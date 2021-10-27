@@ -25,6 +25,7 @@ class PersonController: NSObject, NSFetchedResultsControllerDelegate{
         self.context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let fetchReq = PersonCoreData.fetchRequest()
         fetchReq.sortDescriptors = [NSSortDescriptor(key: "firstname", ascending: true)]
+        // I only use this for the 'controllerDidChangeContent' function
         self.fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchReq, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
         super.init()
         
@@ -36,14 +37,12 @@ class PersonController: NSObject, NSFetchedResultsControllerDelegate{
     }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        print("kjører")
+        print("controllerDidChangeContent trigger")
         // Gets the data from CoreData and transforms in to Person structs.
-        var output: [Person] = []
         let personDataCoreArr = try! context.fetch(PersonCoreData.fetchRequest())
-        for personDC in personDataCoreArr {
-            output.append(Person(from: personDC))
+        self.localPersons = personDataCoreArr.map { personDc in
+            return Person(from: personDc)
         }
-        self.localPersons = output
         
         //Run all update functions
         for function in self.updateFunctions {
