@@ -43,10 +43,20 @@ extension PersonsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "personCell", for: indexPath)
-        let firstname = personController.getPersons()[indexPath.row].name.first as String
-        let lastName = personController.getPersons()[indexPath.row].name.last as String
-        cell.textLabel?.text = "\(firstname) \(lastName)"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "personCell", for: indexPath) as! PersonTableViewCell
+        let personObj = personController.getPersons()[indexPath.row]
+        let firstname = personObj.name.first as String
+        let lastName = personObj.name.last as String
+        cell.nameLabel.text = "\(firstname) \(lastName)"
+        DispatchQueue.global().async {
+            if let pictureUrl = personObj.picture.thumbnail {
+                let url = URL(string: pictureUrl)
+                let data = try? Data(contentsOf: url!)
+                DispatchQueue.main.async {
+                    cell.profilePicture.image = UIImage(data: data!)
+                }
+            }
+        }
         return cell
     }
 }

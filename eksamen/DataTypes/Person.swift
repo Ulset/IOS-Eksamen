@@ -12,12 +12,16 @@ struct Person: Decodable {
     let gender: String
     let name: Name
     let location: Location
+    let picture: Picture
     
-    static func generateFromDataCore(from pDc: PersonCoreData) -> Person{
+    init(from pDc: PersonCoreData) {
         let nameS = Name(title: "notSet", first: pDc.firstname!, last: pDc.lastname!)
         let coordinates = Coordinates(latitude: pDc.latitude!, longitude: pDc.longitude!)
         let location = Location(coordinates: coordinates)
-        return Person(gender: "male", name: nameS, location: location)
+        self.picture = Picture(thumbnail: pDc.pictureThumbnail, large: pDc.pictureHighres)
+        self.location = location
+        self.name = nameS
+        self.gender = "male"
     }
 }
 
@@ -34,4 +38,9 @@ struct Location: Decodable {
 struct Coordinates: Decodable {
     let latitude: String
     let longitude: String
+}
+
+struct Picture: Decodable {
+    let thumbnail: String?
+    let large: String?
 }

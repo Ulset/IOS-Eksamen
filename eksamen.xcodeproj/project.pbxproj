@@ -21,6 +21,7 @@
 		46CB0ECC272949DC004EE824 /* ApiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CB0ECB272949DC004EE824 /* ApiHandler.swift */; };
 		46CB0EF227295720004EE824 /* Persons.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 46CB0EF027295720004EE824 /* Persons.xcdatamodeld */; };
 		46CB0EFA27297069004EE824 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CB0EF927297069004EE824 /* SettingsViewController.swift */; };
+		46FCF3022729B3A700B0274B /* PersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FCF3012729B3A700B0274B /* PersonTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		46CB0ECB272949DC004EE824 /* ApiHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiHandler.swift; sourceTree = "<group>"; };
 		46CB0EF127295720004EE824 /* Persons.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Persons.xcdatamodel; sourceTree = "<group>"; };
 		46CB0EF927297069004EE824 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		46FCF3012729B3A700B0274B /* PersonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 		465896D12727067800DC44BD /* eksamen */ = {
 			isa = PBXGroup;
 			children = (
+				46FCF3002729B38300B0274B /* components */,
 				46CB0ECA272949C5004EE824 /* Utils */,
 				465896EC2727500C00DC44BD /* DataTypes */,
 				465896E92727454B00DC44BD /* Controllers */,
@@ -121,6 +124,14 @@
 				46CB0ECB272949DC004EE824 /* ApiHandler.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		46FCF3002729B38300B0274B /* components */ = {
+			isa = PBXGroup;
+			children = (
+				46FCF3012729B3A700B0274B /* PersonTableViewCell.swift */,
+			);
+			path = components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,6 +211,7 @@
 				465896D32727067800DC44BD /* AppDelegate.swift in Sources */,
 				46CB0EFA27297069004EE824 /* SettingsViewController.swift in Sources */,
 				46CB0ECC272949DC004EE824 /* ApiHandler.swift in Sources */,
+				46FCF3022729B3A700B0274B /* PersonTableViewCell.swift in Sources */,
 				465896D52727067800DC44BD /* SceneDelegate.swift in Sources */,
 				465896EB2727456500DC44BD /* PersonController.swift in Sources */,
 				465896E727270A0200DC44BD /* SelectPersonViewController.swift in Sources */,

@@ -34,7 +34,7 @@ class PersonController {
         var output: [Person] = []
         let personDataCoreArr = try! context.fetch(PersonCoreData.fetchRequest())
         for personDC in personDataCoreArr {
-            output.append(Person.generateFromDataCore(from: personDC))
+            output.append(Person(from: personDC))
         }
         self.localPersons = output
         
@@ -64,6 +64,8 @@ class PersonController {
                 newPerson.lastname = person.name.last
                 newPerson.longitude = person.location.coordinates.longitude
                 newPerson.latitude = person.location.coordinates.latitude
+                newPerson.pictureThumbnail = person.picture.thumbnail
+                newPerson.pictureHighres = person.picture.large
             }
             try! self.context.save()
             self.refreshFromCoreData()
