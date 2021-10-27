@@ -8,8 +8,9 @@
 import Foundation
 import CoreData
 import UIKit
-class PersonController {
+class PersonController: NSObject, NSFetchedResultsControllerDelegate{
     private var localPersons: [Person] = []
+    private var fetchedResultsController: NSFetchedResultsController<PersonCoreData>
     
     //For a app of this scope, ive just added a way of adding a 'updateFunction' to the PersonController
     // This will trigger every function added there everytime there is a refresh of data.
@@ -20,17 +21,23 @@ class PersonController {
     private let api = ApiHandler()
     private let context: NSManagedObjectContext
     
-    init(){
+    override init(){
         self.context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        refreshFromCoreData()
+        let fetchReq = PersonCoreData.fetchRequest()
+        fetchReq.sortDescriptors = [NSSortDescriptor(key: "firstname", ascending: true)]
+        self.fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchReq, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        super.init()
+        
+        fetchedResultsController.delegate = self
+        try! fetchedResultsController.performFetch()
         if(self.localPersons.count == 0){
             refreshPersonsFromApi()
         }
     }
     
-    func refreshFromCoreData() {
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        print("kjører")
         // Gets the data from CoreData and transforms in to Person structs.
-        // This is a pretty heavy function so use this with cauction.
         var output: [Person] = []
         let personDataCoreArr = try! context.fetch(PersonCoreData.fetchRequest())
         for personDC in personDataCoreArr {
@@ -68,22 +75,16 @@ class PersonController {
                 newPerson.pictureHighres = person.picture.large
             }
             try! self.context.save()
-            self.refreshFromCoreData()
         })
     }
     
     func deleteEverything() {
         print("Deleting data....")
-        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "PersonCoreData")
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
-        
-        do {
-            try context.execute(deleteRequest)
-            try context.save()
-            print("Data deleted.")
-        } catch {
-            print("Error deleting data: \(error.localizedDescription)")
+        let personDataCoreArr = try! context.fetch(PersonCoreData.fetchRequest())
+        for personManaged in personDataCoreArr {
+            context.delete(personManaged)
         }
-        refreshFromCoreData()
+        try! context.save()
+        print("Deleted")
     }
 }
