@@ -81,7 +81,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="44e-f6-k8N" kind="relationship" relationship="viewControllers" id="rab-gt-o53"/>
-                        <segue destination="sIe-k6-iFL" kind="relationship" relationship="viewControllers" id="hsV-Ou-VOv"/>
+                        <segue destination="dc4-TE-Hw6" kind="relationship" relationship="viewControllers" id="hsV-Ou-VOv"/>
                         <segue destination="0P9-02-kcO" kind="relationship" relationship="viewControllers" id="fWx-k2-hRL"/>
                     </connections>
                 </tabBarController>
@@ -89,7 +89,7 @@
             </objects>
             <point key="canvasLocation" x="666.66666666666674" y="-25.446428571428569"/>
         </scene>
-        <!--Kart-->
+        <!--Map View Controller-->
         <scene sceneID="bKH-0I-hgf">
             <objects>
                 <viewController id="sIe-k6-iFL" customClass="MapViewController" customModule="eksamen" customModuleProvider="target" sceneMemberID="viewController">
@@ -110,7 +110,6 @@
                             <constraint firstItem="Z3J-k3-BCT" firstAttribute="bottom" secondItem="GNv-YB-aFa" secondAttribute="bottom" id="rHo-Yh-GIM"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Kart" image="map" catalog="system" id="5Uw-Xd-uSf"/>
                     <navigationItem key="navigationItem" id="NAU-xK-eAh"/>
                     <connections>
                         <outlet property="mapOutlet" destination="GNv-YB-aFa" id="PVf-Wr-6ay"/>
@@ -118,7 +117,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pvO-fh-Aeh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1577" y="706"/>
+            <point key="canvasLocation" x="2486.9565217391305" y="705.80357142857144"/>
         </scene>
         <!--Instillinger-->
         <scene sceneID="YbK-zb-4SD">
@@ -199,6 +198,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HWJ-nA-tE8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3328.985507246377" y="-25.446428571428569"/>
+        </scene>
+        <!--Kart-->
+        <scene sceneID="ias-Gz-jrj">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dc4-TE-Hw6" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Kart" image="map" catalog="system" id="5Uw-Xd-uSf"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="I6O-TY-p1y">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="sIe-k6-iFL" kind="relationship" relationship="rootViewController" id="poA-lU-zAF"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ah7-T8-Fko" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1576.8115942028987" y="705.80357142857144"/>
         </scene>
     </scenes>
     <resources>
