@@ -21,33 +21,47 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             self.populateMap()
         }
         mapOutlet.delegate = self
-        let center = CLLocationCoordinate2D(latitude: 59.911491, longitude: 10.757933)
-        let span = MKCoordinateSpan(latitudeDelta: 10, longitudeDelta: 10)
-        let region = MKCoordinateRegion(center: center, span: span)
-        mapOutlet.setRegion(region, animated: true)
     }
     
     func populateMap(){
         let persons = personController.getPersons()
         mapOutlet.removeAnnotations(mapOutlet.annotations)
         for person in persons {
-            let lat = Double(person.location.coordinates.latitude)!
-            let long = Double(person.location.coordinates.longitude)!
-            let annotation = PersonAnnotation(cord: CLLocationCoordinate2D(latitude: lat, longitude: long), person: person)
+            let annotation = PersonAnnotation(person: person)
             mapOutlet.addAnnotation(annotation)
         }
     }
     
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let identifier = "Placemark"
+        
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+        
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+        } else {
+            annotationView?.annotation = annotation
+        }
+        
+        if let thumbnailPicture = (annotation as? PersonAnnotation)?.personObj.picture.thumbnail{
+            ApiHandler.getImageFromURL(url: thumbnailPicture, finished: {image in
+                annotationView?.image = image
+            })
+        }
+        
+        return annotationView
+    }
+    
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        view.isSelected = false
         let pressedEnt = view.annotation as! PersonAnnotation
         let vc = storyboard?.instantiateViewController(withIdentifier: "person") as! PersonViewController
         
         let personObj = pressedEnt.personObj
         vc.title = personObj.name.first as String
         vc.person = personObj
-        
-        navigationController?.present(vc, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            self.present(vc, animated: true, completion: nil)
+        }
     }
 }
 
@@ -56,8 +70,10 @@ class PersonAnnotation: NSObject, MKAnnotation {
     var personObj: Person
     var title: String?
     
-    init(cord: CLLocationCoordinate2D, person: Person) {
-        coordinate = cord
+    init(person: Person) {
+        let lat = Double(person.location.coordinates.latitude)!
+        let long = Double(person.location.coordinates.longitude)!
+        coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
         personObj = person
         title = person.name.first
     }

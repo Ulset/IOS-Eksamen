@@ -11,6 +11,7 @@ import UIKit
 struct ApiHandler {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     struct PersonApiRespose: Decodable {
+        //This is just for the API call, since it returns a list
         let results: [Person]
     }
     
@@ -30,5 +31,15 @@ struct ApiHandler {
             }
         })
         task.resume()
+    }
+    
+    static func getImageFromURL(url: String, finished: @escaping (UIImage) -> Void){
+        DispatchQueue.global().async {
+            let url = URL(string: url)
+            let data = try? Data(contentsOf: url!)
+            DispatchQueue.main.async {
+                finished(UIImage(data: data!)!)
+            }
+        }
     }
 }

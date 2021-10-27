@@ -30,7 +30,9 @@ extension PersonsViewController: UITableViewDelegate {
         let vc = storyboard?.instantiateViewController(withIdentifier: "person") as! PersonViewController
         
         let personObj = personController.getPersons()[indexPath.row]
-        vc.title = personObj.name.first as String
+        let firstname = personObj.name.first
+        let lastname = personObj.name.last
+        vc.title = "\(firstname) \(lastname)"
         vc.person = personObj
         
         navigationController?.pushViewController(vc, animated: true)
@@ -48,14 +50,10 @@ extension PersonsViewController: UITableViewDataSource {
         let firstname = personObj.name.first as String
         let lastName = personObj.name.last as String
         cell.nameLabel.text = "\(firstname) \(lastName)"
-        DispatchQueue.global().async {
-            if let pictureUrl = personObj.picture.thumbnail {
-                let url = URL(string: pictureUrl)
-                let data = try? Data(contentsOf: url!)
-                DispatchQueue.main.async {
-                    cell.profilePicture.image = UIImage(data: data!)
-                }
-            }
+        if let pictureUrl = personObj.picture.thumbnail {
+            ApiHandler.getImageFromURL(url: pictureUrl, finished: {image in
+                cell.profilePicture.image = image
+            })
         }
         return cell
     }
