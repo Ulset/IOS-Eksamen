@@ -13,7 +13,7 @@
 		465896DA2727067800DC44BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 465896D82727067800DC44BD /* Main.storyboard */; };
 		465896DC2727067900DC44BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 465896DB2727067900DC44BD /* Assets.xcassets */; };
 		465896DF2727067900DC44BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 465896DD2727067900DC44BD /* LaunchScreen.storyboard */; };
-		465896E727270A0200DC44BD /* SelectPersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465896E627270A0200DC44BD /* SelectPersonViewController.swift */; };
+		465896E727270A0200DC44BD /* PersonsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465896E627270A0200DC44BD /* PersonsTableViewController.swift */; };
 		465896EB2727456500DC44BD /* PersonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465896EA2727456500DC44BD /* PersonController.swift */; };
 		465896EE2727501900DC44BD /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465896ED2727501900DC44BD /* Person.swift */; };
 		465896F02727515900DC44BD /* PersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465896EF2727515900DC44BD /* PersonViewController.swift */; };
@@ -32,7 +32,7 @@
 		465896DB2727067900DC44BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		465896DE2727067900DC44BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		465896E02727067900DC44BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		465896E627270A0200DC44BD /* SelectPersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPersonViewController.swift; sourceTree = "<group>"; };
+		465896E627270A0200DC44BD /* PersonsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonsTableViewController.swift; sourceTree = "<group>"; };
 		465896EA2727456500DC44BD /* PersonController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonController.swift; sourceTree = "<group>"; };
 		465896ED2727501900DC44BD /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		465896EF2727515900DC44BD /* PersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewController.swift; sourceTree = "<group>"; };
@@ -91,7 +91,7 @@
 		465896E82727451900DC44BD /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				465896E627270A0200DC44BD /* SelectPersonViewController.swift */,
+				465896E627270A0200DC44BD /* PersonsTableViewController.swift */,
 				465896EF2727515900DC44BD /* PersonViewController.swift */,
 				46CB0EF927297069004EE824 /* SettingsViewController.swift */,
 				461CF09727298E2E00FBB8B4 /* MapViewController.swift */,
@@ -210,7 +210,7 @@
 				46FCF3022729B3A700B0274B /* PersonTableViewCell.swift in Sources */,
 				465896D52727067800DC44BD /* SceneDelegate.swift in Sources */,
 				465896EB2727456500DC44BD /* PersonController.swift in Sources */,
-				465896E727270A0200DC44BD /* SelectPersonViewController.swift in Sources */,
+				465896E727270A0200DC44BD /* PersonsTableViewController.swift in Sources */,
 				46CB0EF227295720004EE824 /* Persons.xcdatamodeld in Sources */,
 				465896F02727515900DC44BD /* PersonViewController.swift in Sources */,
 			);

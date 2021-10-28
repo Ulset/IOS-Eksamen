@@ -9,12 +9,13 @@ import Foundation
 import CoreData
 import UIKit
 class PersonController: NSObject, NSFetchedResultsControllerDelegate{
+    // localPersons stores the data from CoreData to pass down to viewControllers
+    // fetchedResultsController is just used for the controllerDidChangeContent function
     private var localPersons: [Person] = []
     private var fetchedResultsController: NSFetchedResultsController<PersonCoreData>
     
     //For a app of this scope, ive just added a way of adding a 'updateFunction' to the PersonController
-    // This will trigger every function added there everytime there is a refresh of data.
-    // Not really scalable, and surely not efficient, but works in this case.
+    // Every time there is new data, every function added via 'addUpdateFunction' will run.
     private var updateFunctions: [() -> Void] = []
     
     // ApiHandler does the actual fetching
@@ -25,7 +26,6 @@ class PersonController: NSObject, NSFetchedResultsControllerDelegate{
         self.context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let fetchReq = PersonCoreData.fetchRequest()
         fetchReq.sortDescriptors = [NSSortDescriptor(key: "firstname", ascending: true)]
-        // I only use this for the 'controllerDidChangeContent' function
         self.fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchReq, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
         super.init()
         
@@ -84,6 +84,7 @@ class PersonController: NSObject, NSFetchedResultsControllerDelegate{
     }
     
     func deleteEverything() {
+        //I am become death, the destroyer of Persons
         print("Deleting data....")
         let personDataCoreArr = try! context.fetch(PersonCoreData.fetchRequest())
         for personManaged in personDataCoreArr {

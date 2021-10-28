@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class PersonsViewController: UIViewController {
+class PersonsTableViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     let personController = (UIApplication.shared.delegate as! AppDelegate).personController
@@ -19,7 +19,7 @@ class PersonsViewController: UIViewController {
         personController.addUpdateFunction {
             self.tableView.reloadData()
             
-            if !(self.navigationController?.viewControllers.last is PersonsViewController) {
+            if !(self.navigationController?.viewControllers.last is PersonsTableViewController) {
                 // If the user has navigated away from the inital screen, force them back.
                 self.navigationController?.popToViewController(self, animated: false)
             }
@@ -29,7 +29,7 @@ class PersonsViewController: UIViewController {
     }
 }
 
-extension PersonsViewController: UITableViewDelegate {
+extension PersonsTableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let vc = storyboard?.instantiateViewController(withIdentifier: "person") as! PersonViewController
@@ -41,7 +41,7 @@ extension PersonsViewController: UITableViewDelegate {
     }
 }
 
-extension PersonsViewController: UITableViewDataSource {
+extension PersonsTableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return personController.getPersons().count
     }

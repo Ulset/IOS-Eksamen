@@ -9,6 +9,7 @@ import Foundation
 import CoreData
 
 struct Person: Decodable {
+    //Represents a person fetched from the randomuser.me API.
     let name: Name
     let location: Location
     let picture: Picture
@@ -16,6 +17,8 @@ struct Person: Decodable {
     let dob: DateOfBirth
     
     init(from pDc: PersonCoreData) {
+        // Data os stored in CoreData as a PersonCoreData object.
+        // Can be initalized back to a Person struct with this
         let nameS = Name(title: "notSet", first: pDc.firstname!, last: pDc.lastname!)
         let coordinates = Coordinates(latitude: pDc.latitude!, longitude: pDc.longitude!)
         let location = Location(coordinates: coordinates)
