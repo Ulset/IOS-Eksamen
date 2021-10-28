@@ -154,18 +154,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XFg-Lk-SE4">
-                                <rect key="frame" x="169" y="432.5" width="76" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XFg-Lk-SE4">
+                                <rect key="frame" x="157" y="432.5" width="100" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="Kpj-MC-aNT"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="DELETE"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Slett alt"/>
                                 <connections>
                                     <action selector="deleteFunc:" destination="0P9-02-kcO" eventType="touchUpInside" id="xW6-3d-qBV"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2PZ-aP-HH6">
-                                <rect key="frame" x="156" y="480" width="102" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2PZ-aP-HH6">
+                                <rect key="frame" x="157" y="480" width="100" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Hent nye"/>
                                 <connections>
@@ -175,6 +176,13 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="bTp-zY-de2"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="XFg-Lk-SE4" firstAttribute="centerY" secondItem="B43-Cu-1xB" secondAttribute="centerY" id="4YJ-sX-QMt"/>
+                            <constraint firstItem="XFg-Lk-SE4" firstAttribute="centerX" secondItem="B43-Cu-1xB" secondAttribute="centerX" id="Os2-X1-I4M"/>
+                            <constraint firstItem="2PZ-aP-HH6" firstAttribute="top" secondItem="XFg-Lk-SE4" secondAttribute="bottom" constant="16.5" id="Qdn-KU-Lcf"/>
+                            <constraint firstItem="2PZ-aP-HH6" firstAttribute="width" secondItem="XFg-Lk-SE4" secondAttribute="width" id="pYV-WW-XHg"/>
+                            <constraint firstItem="XFg-Lk-SE4" firstAttribute="centerX" secondItem="2PZ-aP-HH6" secondAttribute="centerX" id="xrx-TQ-dou"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Instillinger" image="gear" catalog="system" id="zMj-2J-irB"/>
                 </viewController>
@@ -191,21 +199,55 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="k63-1c-cX6">
-                                <rect key="frame" x="0.0" y="44" width="414" height="200"/>
+                                <rect key="frame" x="107" y="64" width="200" height="200"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="ELX-AW-cXg"/>
+                                    <constraint firstAttribute="height" constant="200" id="vIP-Sv-aO5"/>
+                                    <constraint firstAttribute="width" constant="200" id="zic-f0-vVO"/>
                                 </constraints>
                             </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="LWs-HK-xBa">
+                                <rect key="frame" x="20" y="284" width="374" height="92"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zDD-Hz-Z8e">
+                                        <rect key="frame" x="0.0" y="0.0" width="28.5" height="13.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EmailLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YbY-0h-oFJ">
+                                        <rect key="frame" x="0.0" y="21.5" width="82" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fødselsdato" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4nU-Pn-cnz">
+                                        <rect key="frame" x="0.0" y="50" width="64.5" height="13.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FødselLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sj4-Ue-d0d">
+                                        <rect key="frame" x="0.0" y="71.5" width="92" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="3ly-CP-j1O"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="k63-1c-cX6" firstAttribute="leading" secondItem="3ly-CP-j1O" secondAttribute="leading" id="Gnp-Cd-Zdw"/>
-                            <constraint firstItem="k63-1c-cX6" firstAttribute="top" secondItem="3ly-CP-j1O" secondAttribute="top" id="Rno-sD-OMG"/>
-                            <constraint firstItem="k63-1c-cX6" firstAttribute="trailing" secondItem="3ly-CP-j1O" secondAttribute="trailing" id="yiy-s2-MGc"/>
+                            <constraint firstItem="LWs-HK-xBa" firstAttribute="leading" secondItem="3ly-CP-j1O" secondAttribute="leading" constant="20" id="EFj-IQ-xub"/>
+                            <constraint firstItem="LWs-HK-xBa" firstAttribute="top" secondItem="k63-1c-cX6" secondAttribute="bottom" constant="20" id="JPP-sb-H9c"/>
+                            <constraint firstItem="3ly-CP-j1O" firstAttribute="trailing" secondItem="LWs-HK-xBa" secondAttribute="trailing" constant="20" id="NgP-1d-BYz"/>
+                            <constraint firstItem="k63-1c-cX6" firstAttribute="top" secondItem="3ly-CP-j1O" secondAttribute="top" constant="20" id="gbL-xr-fHd"/>
+                            <constraint firstItem="k63-1c-cX6" firstAttribute="centerX" secondItem="Qhf-4Y-gEd" secondAttribute="centerX" id="uge-lU-I1k"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="birthdateLabel" destination="sj4-Ue-d0d" id="iJk-ZP-xYt"/>
+                        <outlet property="emailLabel" destination="YbY-0h-oFJ" id="uzZ-f2-rj0"/>
                         <outlet property="profilePicture" destination="k63-1c-cX6" id="WhV-o6-5Bd"/>
                     </connections>
                 </viewController>

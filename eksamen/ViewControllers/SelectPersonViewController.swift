@@ -18,6 +18,11 @@ class PersonsViewController: UIViewController {
         super.viewDidLoad()
         personController.addUpdateFunction {
             self.tableView.reloadData()
+            
+            if !(self.navigationController?.viewControllers.last is PersonsViewController) {
+                // If the user has navigated away from the inital screen, force them back.
+                self.navigationController?.popToViewController(self, animated: false)
+            }
         }
         tableView.delegate = self
         tableView.dataSource = self
@@ -30,9 +35,6 @@ extension PersonsViewController: UITableViewDelegate {
         let vc = storyboard?.instantiateViewController(withIdentifier: "person") as! PersonViewController
         
         let personObj = personController.getPersons()[indexPath.row]
-        let firstname = personObj.name.first
-        let lastname = personObj.name.last
-        vc.title = "\(firstname) \(lastname)"
         vc.person = personObj
         
         navigationController?.pushViewController(vc, animated: true)
@@ -46,7 +48,8 @@ extension PersonsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "personCell", for: indexPath) as! PersonTableViewCell
-        let personObj = personController.getPersons()[indexPath.row]
+        let personObj = personController.getPersonByIndex(index: indexPath.row)
+        print(personObj.dob.date!)
         let firstname = personObj.name.first as String
         let lastName = personObj.name.last as String
         cell.nameLabel.text = "\(firstname) \(lastName)"

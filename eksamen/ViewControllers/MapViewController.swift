@@ -10,15 +10,20 @@ import MapKit
 
 class MapViewController: UIViewController, MKMapViewDelegate {
     let personController = (UIApplication.shared.delegate as! AppDelegate).personController
+    var focusOnPerson: Person?
     
     @IBOutlet weak var mapOutlet: MKMapView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        populateMap()
-        personController.addUpdateFunction {
-            self.populateMap()
+        if focusOnPerson != nil {
+            // Only show a single person, and focus on that person
+        } else {
+            populateMap()
+            personController.addUpdateFunction {
+                self.populateMap()
+            }
         }
         mapOutlet.delegate = self
     }
@@ -60,7 +65,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         vc.title = personObj.name.first as String
         vc.person = personObj
         DispatchQueue.main.async {
-            self.present(vc, animated: true, completion: nil)
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
 }

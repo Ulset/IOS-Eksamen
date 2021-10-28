@@ -57,6 +57,10 @@ class PersonController: NSObject, NSFetchedResultsControllerDelegate{
         return localPersons
     }
     
+    func getPersonByIndex(index: Int) -> Person {
+        return localPersons[index]
+    }
+    
     func addUpdateFunction(updateFunc: @escaping () -> Void) {
         // Adds a function to the updateArray, this function will trigger everytime there is fresh data.
         updateFunctions.append(updateFunc)
@@ -72,6 +76,8 @@ class PersonController: NSObject, NSFetchedResultsControllerDelegate{
                 newPerson.latitude = person.location.coordinates.latitude
                 newPerson.pictureThumbnail = person.picture.thumbnail
                 newPerson.pictureHighres = person.picture.large
+                newPerson.email = person.email
+                newPerson.birthdate = person.dob.date
             }
             try! self.context.save()
         })

@@ -10,9 +10,23 @@ import UIKit
 class PersonViewController: UIViewController {
     var person: Person?
     @IBOutlet weak var profilePicture: UIImageView!
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var birthdateLabel: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let firstname = person?.name.first
+        let lastname = person?.name.last
+        self.title = "\(firstname!) \(lastname!)"
+        emailLabel.text = person?.email
+        birthdateLabel.text = person?.dob.getDateFormatted(format: "dd-MM-yyyy")
+        
+        if(person!.dob.hasBirthday()){
+            //TODO Lage bursdagsgreia
+            print("Har bursdag!")
+        }
+        
         DispatchQueue.global().async {
             if let pictureUrl = self.person?.picture.large {
                 ApiHandler.getImageFromURL(url: pictureUrl, finished: {image in
