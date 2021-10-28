@@ -22,7 +22,7 @@ class PersonViewController: UIViewController {
         emailLabel.text = person?.email
         birthdateLabel.text = person?.dob.getDateFormatted(format: "dd-MM-yyyy")
         
-        if(person!.dob.hasBirthday()){
+        if(person!.dob.hasBirthdayThisWeek()){
             //TODO Lage bursdagsgreia
             print("Har bursdag!")
         }

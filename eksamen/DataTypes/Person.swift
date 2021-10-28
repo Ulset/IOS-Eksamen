@@ -19,7 +19,7 @@ struct Person: Decodable {
     init(from pDc: PersonCoreData) {
         // Data os stored in CoreData as a PersonCoreData object.
         // Can be initalized back to a Person struct with this
-        let nameS = Name(title: "notSet", first: pDc.firstname!, last: pDc.lastname!)
+        let nameS = Name(first: pDc.firstname!, last: pDc.lastname!)
         let coordinates = Coordinates(latitude: pDc.latitude!, longitude: pDc.longitude!)
         let location = Location(coordinates: coordinates)
         self.picture = Picture(thumbnail: pDc.pictureThumbnail, large: pDc.pictureHighres)
@@ -31,7 +31,6 @@ struct Person: Decodable {
 }
 
 struct Name: Decodable {
-    let title: String
     let first: String
     let last: String
 }
@@ -70,8 +69,8 @@ struct DateOfBirth: Decodable {
         return formatted
     }
     
-    func hasBirthday() -> Bool {
-        let format = "dd-MM"
+    func hasBirthdayThisWeek() -> Bool {
+        let format = "w"
         let todaysDate = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = format
