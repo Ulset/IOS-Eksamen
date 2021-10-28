@@ -16,7 +16,7 @@ struct ApiHandler {
     }
     
     func getPersonsFromApi(finished: (([Person])->Void)?){
-        let url = URL(string: "https://randomuser.me/api/?results=100&seed=ios&nat=NO")!
+        let url = URL(string: "https://randomuser.me/api/?results=100&seed=ios&nat=no")!
         let task = URLSession.shared.dataTask(with: url, completionHandler: {data, response, error in
             print("Data henting")
             if let data = data {

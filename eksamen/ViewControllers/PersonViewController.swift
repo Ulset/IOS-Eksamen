@@ -35,4 +35,11 @@ class PersonViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func showOnMapPressed(_ sender: UIButton) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "map") as! MapViewController
+        vc.focusOnPerson = person
+        
+        navigationController?.present(vc, animated: true, completion: nil)
+    }
 }

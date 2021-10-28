@@ -49,7 +49,6 @@ extension PersonsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "personCell", for: indexPath) as! PersonTableViewCell
         let personObj = personController.getPersonByIndex(index: indexPath.row)
-        print(personObj.dob.date!)
         let firstname = personObj.name.first as String
         let lastName = personObj.name.last as String
         cell.nameLabel.text = "\(firstname) \(lastName)"

@@ -19,6 +19,13 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         super.viewDidLoad()
         if focusOnPerson != nil {
             // Only show a single person, and focus on that person
+            mapOutlet.isZoomEnabled = false
+            mapOutlet.isScrollEnabled = false
+            let annotation = PersonAnnotation(person: focusOnPerson!)
+            mapOutlet.addAnnotation(annotation)
+            
+            mapOutlet.centerCoordinate = annotation.coordinate
+            mapOutlet.region = MKCoordinateRegion(center: annotation.coordinate, span: MKCoordinateSpan(latitudeDelta: 10, longitudeDelta: 10))
         } else {
             populateMap()
             personController.addUpdateFunction {

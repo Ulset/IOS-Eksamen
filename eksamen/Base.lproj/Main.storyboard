@@ -119,7 +119,7 @@
         <!--Map View Controller-->
         <scene sceneID="bKH-0I-hgf">
             <objects>
-                <viewController id="sIe-k6-iFL" customClass="MapViewController" customModule="eksamen" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="map" id="sIe-k6-iFL" customClass="MapViewController" customModule="eksamen" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2xw-xH-u82">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -234,13 +234,41 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="36Y-aG-Tcy">
+                                <rect key="frame" x="107" y="665" width="200" height="120"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NHX-7S-N54">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="FGe-Ts-o0W"/>
+                                            <constraint firstAttribute="width" constant="200" id="ode-pc-1Fk"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Rediger"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OkC-p2-Qxg">
+                                        <rect key="frame" x="0.0" y="70" width="200" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="NgM-7X-fH1"/>
+                                            <constraint firstAttribute="width" constant="200" id="YL8-8C-OEh"/>
+                                        </constraints>
+                                        <color key="tintColor" systemColor="systemTealColor"/>
+                                        <buttonConfiguration key="configuration" style="filled" image="map" catalog="system" title="Vis på kart"/>
+                                        <connections>
+                                            <action selector="showOnMapPressed:" destination="R6R-A2-Dk5" eventType="touchUpInside" id="mKT-mo-t5B"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="3ly-CP-j1O"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="LWs-HK-xBa" firstAttribute="leading" secondItem="3ly-CP-j1O" secondAttribute="leading" constant="20" id="EFj-IQ-xub"/>
                             <constraint firstItem="LWs-HK-xBa" firstAttribute="top" secondItem="k63-1c-cX6" secondAttribute="bottom" constant="20" id="JPP-sb-H9c"/>
+                            <constraint firstItem="36Y-aG-Tcy" firstAttribute="centerX" secondItem="Qhf-4Y-gEd" secondAttribute="centerX" id="Ndf-Bk-oOd"/>
                             <constraint firstItem="3ly-CP-j1O" firstAttribute="trailing" secondItem="LWs-HK-xBa" secondAttribute="trailing" constant="20" id="NgP-1d-BYz"/>
+                            <constraint firstItem="3ly-CP-j1O" firstAttribute="bottom" secondItem="36Y-aG-Tcy" secondAttribute="bottom" constant="77" id="SUw-bv-mtL"/>
                             <constraint firstItem="k63-1c-cX6" firstAttribute="top" secondItem="3ly-CP-j1O" secondAttribute="top" constant="20" id="gbL-xr-fHd"/>
                             <constraint firstItem="k63-1c-cX6" firstAttribute="centerX" secondItem="Qhf-4Y-gEd" secondAttribute="centerX" id="uge-lU-I1k"/>
                         </constraints>
@@ -281,6 +309,9 @@
         <image name="person.2.fill" catalog="system" width="128" height="80"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
