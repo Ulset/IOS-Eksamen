@@ -70,17 +70,22 @@ class PersonController: NSObject, NSFetchedResultsControllerDelegate{
         api.getPersonsFromApi(finished: {persons in
             for person in persons {
                 let newPerson = PersonCoreData(context: self.context)
-                newPerson.firstname = person.name.first
-                newPerson.lastname = person.name.last
-                newPerson.longitude = person.location.coordinates.longitude
-                newPerson.latitude = person.location.coordinates.latitude
-                newPerson.pictureThumbnail = person.picture.thumbnail
-                newPerson.pictureHighres = person.picture.large
-                newPerson.email = person.email
-                newPerson.birthdate = person.dob.date
+                self.applyPersonToPdc(from: person, to: newPerson)
             }
             try! self.context.save()
         })
+    }
+    
+    private func applyPersonToPdc(from person: Person, to pDc: PersonCoreData){
+        //Just a helper function to convert a Person to a PersonDataCore object
+        pDc.firstname = person.name.first
+        pDc.lastname = person.name.last
+        pDc.longitude = person.location.coordinates.longitude
+        pDc.latitude = person.location.coordinates.latitude
+        pDc.pictureThumbnail = person.picture.thumbnail
+        pDc.pictureHighres = person.picture.large
+        pDc.email = person.email
+        pDc.birthdate = person.dob.date
     }
     
     func deleteEverything() {
