@@ -29,6 +29,10 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         } else {
             populateMap()
             personController.addUpdateFunction {
+                if self.navigationController?.topViewController != self {
+                    //Reset map to first screen.
+                    self.navigationController?.popToViewController(self, animated: true)
+                }
                 self.populateMap()
             }
         }

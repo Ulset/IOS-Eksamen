@@ -10,33 +10,40 @@ import CoreData
 
 struct Person: Decodable {
     //Represents a person fetched from the randomuser.me API.
-    let name: Name
+    var name: Name
     let location: Location
     let picture: Picture
     let email: String?
     let dob: DateOfBirth
+    let login: Login
     
     init(from pDc: PersonCoreData) {
         // Data os stored in CoreData as a PersonCoreData object.
         // Can be initalized back to a Person struct with this
         let nameS = Name(first: pDc.firstname!, last: pDc.lastname!)
         let coordinates = Coordinates(latitude: pDc.latitude!, longitude: pDc.longitude!)
-        let location = Location(coordinates: coordinates)
+        let location = Location(coordinates: coordinates, city: pDc.city)
         self.picture = Picture(thumbnail: pDc.pictureThumbnail, large: pDc.pictureHighres)
         self.location = location
         self.name = nameS
         self.email = pDc.email
-        self.dob = DateOfBirth(date: pDc.birthdate)
+        self.dob = DateOfBirth(date: pDc.birthdate, age: Int(pDc.age ?? "0"))
+        self.login = Login(uuid: pDc.uuid)
     }
 }
 
+struct Login: Decodable {
+    let uuid: String?
+}
+
 struct Name: Decodable {
-    let first: String
+    var first: String
     let last: String
 }
 
 struct Location: Decodable {
     let coordinates: Coordinates
+    let city: String?
 }
 
 struct Coordinates: Decodable {
@@ -51,6 +58,7 @@ struct Picture: Decodable {
 
 struct DateOfBirth: Decodable {
     let date: String?
+    let age: Int?
     
     func getDateFormatted(format: String) -> String{
         //Couldt get the whole iso string to work so im just using day/monnth/year

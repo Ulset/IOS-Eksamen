@@ -22,14 +22,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="personCell" id="Uut-wj-xli" customClass="PersonTableViewCell" customModule="eksamen" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.666666030883789" width="390" height="43.333332061767578"/>
+                                        <rect key="frame" x="0.0" y="44.666666030883789" width="390" height="43"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Uut-wj-xli" id="PyQ-be-6zp">
-                                            <rect key="frame" x="0.0" y="0.0" width="390" height="43.333332061767578"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rKg-F4-v1j">
-                                                    <rect key="frame" x="20" y="10.999999999999998" width="310" height="21.333333333333329"/>
+                                                    <rect key="frame" x="20" y="11" width="310" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -269,6 +269,9 @@
                                         </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Rediger"/>
+                                        <connections>
+                                            <action selector="changeUser:" destination="R6R-A2-Dk5" eventType="touchUpInside" id="EDW-kC-RIR"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OkC-p2-Qxg">
                                         <rect key="frame" x="0.0" y="70" width="200" height="50"/>
@@ -298,7 +301,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="alderLabel" destination="9Gx-d8-yYs" id="LuS-cT-S9K"/>
                         <outlet property="birthdateLabel" destination="sj4-Ue-d0d" id="iJk-ZP-xYt"/>
+                        <outlet property="bostedLabel" destination="Hci-Nb-5Fl" id="zdB-lB-orq"/>
                         <outlet property="emailLabel" destination="YbY-0h-oFJ" id="uzZ-f2-rj0"/>
                         <outlet property="profilePicture" destination="k63-1c-cX6" id="WhV-o6-5Bd"/>
                     </connections>

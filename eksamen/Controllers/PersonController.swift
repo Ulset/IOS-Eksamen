@@ -25,12 +25,15 @@ class PersonController: NSObject, NSFetchedResultsControllerDelegate{
     override init(){
         self.context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let fetchReq = PersonCoreData.fetchRequest()
-        fetchReq.sortDescriptors = [NSSortDescriptor(key: "firstname", ascending: true)]
+        fetchReq.sortDescriptors = [NSSortDescriptor(key: "uuid", ascending: true)]
         self.fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchReq, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
         super.init()
         
         fetchedResultsController.delegate = self
         try! fetchedResultsController.performFetch()
+        
+        refreshFromCoreData()
+        
         if(self.localPersons.count == 0){
             refreshPersonsFromApi()
         }
@@ -38,18 +41,23 @@ class PersonController: NSObject, NSFetchedResultsControllerDelegate{
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         print("controllerDidChangeContent trigger")
-        // Gets the data from CoreData and transforms in to Person structs.
-        let personDataCoreArr = try! context.fetch(PersonCoreData.fetchRequest())
-        self.localPersons = personDataCoreArr.map { personDc in
-            return Person(from: personDc)
-        }
-        
+        refreshFromCoreData()
         //Run all update functions
         for function in self.updateFunctions {
             DispatchQueue.main.async {
                 //Function may be a table update, so im running them on the main thread.
                 function()
             }
+        }
+    }
+    
+    func refreshFromCoreData(){
+        // Gets the data from CoreData and transforms in to Person structs.
+        let fetchReq = PersonCoreData.fetchRequest()
+        fetchReq.sortDescriptors = [NSSortDescriptor(key: "uuid", ascending: true)]
+        let personDataCoreArr = try! context.fetch(fetchReq)
+        self.localPersons = personDataCoreArr.map { personDc in
+            return Person(from: personDc)
         }
     }
     
@@ -86,6 +94,20 @@ class PersonController: NSObject, NSFetchedResultsControllerDelegate{
         pDc.pictureHighres = person.picture.large
         pDc.email = person.email
         pDc.birthdate = person.dob.date
+        pDc.age = String(person.dob.age ?? 0)
+        pDc.city = person.location.city
+        pDc.uuid = person.login.uuid
+    }
+    
+    func updatePerson(person p: Person){
+        let fetchReq = PersonCoreData.fetchRequest()
+        fetchReq.predicate = NSPredicate(format: "uuid = %@", p.login.uuid!)
+        if let fetchedUsers = try? context.fetch(fetchReq) {
+            for user in fetchedUsers {
+                self.applyPersonToPdc(from: p, to: user)
+            }
+            try! context.save()
+        }
     }
     
     func deleteEverything() {

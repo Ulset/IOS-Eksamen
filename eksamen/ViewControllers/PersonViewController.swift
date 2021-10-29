@@ -12,7 +12,10 @@ class PersonViewController: UIViewController {
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var birthdateLabel: UILabel!
+    @IBOutlet weak var alderLabel: UILabel!
+    @IBOutlet weak var bostedLabel: UILabel!
     
+    let personController = (UIApplication.shared.delegate as! AppDelegate).personController
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +24,8 @@ class PersonViewController: UIViewController {
         self.title = "\(firstname!) \(lastname!)"
         emailLabel.text = person?.email
         birthdateLabel.text = person?.dob.getDateFormatted(format: "dd-MM-yyyy")
-        
+        alderLabel.text = String(person?.dob.age ?? 0)
+        bostedLabel.text = person?.location.city
         if(person!.dob.hasBirthdayThisWeek()){
             //TODO Lage bursdagsgreia
             print("Har bursdag!")
@@ -36,6 +40,10 @@ class PersonViewController: UIViewController {
         }
     }
     
+    @IBAction func changeUser(_ sender: UIButton) {
+        self.person?.name.first = "TISSEMANN HEHE"
+        personController.updatePerson(person: self.person!)
+    }
     @IBAction func showOnMapPressed(_ sender: UIButton) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "map") as! MapViewController
         vc.focusOnPerson = person
