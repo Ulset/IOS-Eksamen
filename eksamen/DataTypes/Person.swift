@@ -16,6 +16,7 @@ struct Person: Decodable {
     var email: String?
     var dob: DateOfBirth
     let login: Login
+    var phone: String?
     
     init(from pDc: PersonCoreData) {
         // Data os stored in CoreData as a PersonCoreData object.
@@ -29,6 +30,7 @@ struct Person: Decodable {
         self.email = pDc.email
         self.dob = DateOfBirth(date: pDc.birthdate)
         self.login = Login(uuid: pDc.uuid)
+        self.phone = pDc.phoneNumber
     }
 }
 

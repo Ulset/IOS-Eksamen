@@ -10,11 +10,12 @@
         <attribute name="lastname" attributeType="String"/>
         <attribute name="latitude" attributeType="String"/>
         <attribute name="longitude" attributeType="String"/>
+        <attribute name="phoneNumber" optional="YES" attributeType="String"/>
         <attribute name="pictureHighres" optional="YES" attributeType="String"/>
         <attribute name="pictureThumbnail" optional="YES" attributeType="String"/>
         <attribute name="uuid" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="PersonCoreData" positionX="-63" positionY="-18" width="128" height="209"/>
+        <element name="PersonCoreData" positionX="-63" positionY="-18" width="128" height="224"/>
     </elements>
 </model>

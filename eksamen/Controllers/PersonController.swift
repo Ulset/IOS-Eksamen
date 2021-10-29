@@ -103,6 +103,7 @@ class PersonController: NSObject, NSFetchedResultsControllerDelegate{
         pDc.birthdate = person.dob.date
         pDc.city = person.location.city
         pDc.uuid = person.login.uuid
+        pDc.phoneNumber = person.phone
     }
     
     func updatePerson(person p: Person){

@@ -14,6 +14,7 @@ class PersonViewController: UIViewController {
     @IBOutlet weak var birthdateLabel: UILabel!
     @IBOutlet weak var alderLabel: UILabel!
     @IBOutlet weak var bostedLabel: UILabel!
+    @IBOutlet weak var telephoneLabel: UILabel!
     
     let personController = (UIApplication.shared.delegate as! AppDelegate).personController
     
@@ -26,6 +27,7 @@ class PersonViewController: UIViewController {
         birthdateLabel.text = person?.dob.getDateFormatted(format: "dd-MM-yyyy")
         alderLabel.text = String(person?.dob.age ?? 0)
         bostedLabel.text = person?.location.city
+        telephoneLabel.text = person?.phone
         if(person!.dob.hasBirthdayThisWeek()){
             //TODO Lage bursdagsgreia
             print("Har bursdag!")
