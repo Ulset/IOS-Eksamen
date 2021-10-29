@@ -11,9 +11,9 @@ import CoreData
 struct Person: Decodable {
     //Represents a person fetched from the randomuser.me API.
     var name: Name
-    let location: Location
+    var location: Location
     let picture: Picture
-    let email: String?
+    var email: String?
     var dob: DateOfBirth
     let login: Login
     
@@ -38,12 +38,12 @@ struct Login: Decodable {
 
 struct Name: Decodable {
     var first: String
-    let last: String
+    var last: String
 }
 
 struct Location: Decodable {
     let coordinates: Coordinates
-    let city: String?
+    var city: String?
 }
 
 struct Coordinates: Decodable {
