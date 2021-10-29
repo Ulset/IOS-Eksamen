@@ -302,10 +302,10 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="36Y-aG-Tcy">
-                                <rect key="frame" x="95" y="648" width="200" height="103"/>
+                                <rect key="frame" x="95" y="631" width="200" height="120"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NHX-7S-N54">
-                                        <rect key="frame" x="0.0" y="0.0" width="200" height="31"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="36.666666666666664"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Rediger"/>
                                         <connections>
@@ -313,7 +313,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OkC-p2-Qxg">
-                                        <rect key="frame" x="0.0" y="36" width="200" height="31"/>
+                                        <rect key="frame" x="0.0" y="41.666666666666629" width="200" height="36.666666666666657"/>
                                         <buttonConfiguration key="configuration" style="filled" image="map" catalog="system" title="Vis på kart">
                                             <color key="baseBackgroundColor" systemColor="systemTealColor"/>
                                         </buttonConfiguration>
@@ -322,7 +322,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="248" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Geg-LA-5Ql">
-                                        <rect key="frame" x="0.0" y="72" width="200" height="31"/>
+                                        <rect key="frame" x="0.0" y="83.333333333333371" width="200" height="36.666666666666657"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Slett bruker">
                                             <color key="baseBackgroundColor" systemColor="systemRedColor"/>
@@ -333,7 +333,9 @@
                                     </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="120" id="4IO-Fw-zc9"/>
                                     <constraint firstAttribute="width" constant="200" id="UVW-Mg-LRn"/>
+                                    <constraint firstAttribute="height" priority="750" constant="120" id="szb-Iz-kow"/>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -507,7 +509,6 @@
                             <constraint firstItem="axD-oK-Vfv" firstAttribute="trailing" secondItem="pVu-Ge-V5Q" secondAttribute="trailing" constant="10" id="z6y-FF-0Co"/>
                         </constraints>
                     </view>
-                    <size key="freeformSize" width="390" height="844"/>
                     <connections>
                         <outlet property="cityInput" destination="XtJ-zF-hT8" id="clZ-aB-7OJ"/>
                         <outlet property="dobInput" destination="Gfa-xj-lty" id="mCB-fl-XLv"/>
@@ -519,7 +520,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZJZ-Z0-iTn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4210.7692307692305" y="-26.303317535545023"/>
+            <point key="canvasLocation" x="4208" y="-45"/>
         </scene>
     </scenes>
     <resources>

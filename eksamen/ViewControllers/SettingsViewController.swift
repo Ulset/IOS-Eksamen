@@ -35,10 +35,20 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func deleteFunc(_ sender: UIButton) {
-        personController.deleteEverything()
+        let alert = UIAlertController(title: "Slette", message: "Vil du slette alle, eller bare de som ikke er endret?", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Alle", style: UIAlertAction.Style.default, handler: {_ in
+            self.personController.deleteEverything(onlyNonChanged: false)
+        }))
+        alert.addAction(UIAlertAction(title: "Bare uendret", style: UIAlertAction.Style.default, handler: {_ in
+            self.personController.deleteEverything()
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func getNew(_ sender: UIButton) {
         personController.refreshPersonsFromApi()
+        let alert = UIAlertController(title: "Flere personer", message: "100 nye mennesker lagt til!", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Nice!", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }
