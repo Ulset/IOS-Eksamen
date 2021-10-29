@@ -22,20 +22,20 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="personCell" id="Uut-wj-xli" customClass="PersonTableViewCell" customModule="eksamen" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.666666030883789" width="390" height="43.333332061767578"/>
+                                        <rect key="frame" x="0.0" y="44.666666030883789" width="390" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Uut-wj-xli" id="PyQ-be-6zp">
-                                            <rect key="frame" x="0.0" y="0.0" width="390" height="43.333332061767578"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rKg-F4-v1j">
-                                                    <rect key="frame" x="20" y="10.999999999999998" width="310" height="21.333333333333329"/>
+                                                    <rect key="frame" x="20" y="11.000000000000002" width="310" height="21.666666666666671"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ide-0v-2WY">
-                                                    <rect key="frame" x="330" y="6.6666666666666679" width="30" height="30.000000000000004"/>
+                                                    <rect key="frame" x="330" y="7" width="30" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="D1r-SL-hBo"/>
                                                         <constraint firstAttribute="width" constant="30" id="y23-aW-D86"/>
@@ -71,6 +71,7 @@
                     <navigationItem key="navigationItem" title="Personer" id="tbm-gb-QKe"/>
                     <connections>
                         <outlet property="tableView" destination="tg7-Wo-XvX" id="q1c-84-ouw"/>
+                        <segue destination="R6R-A2-Dk5" kind="show" identifier="showPersonSegue" id="U20-5x-Vf3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -131,10 +132,10 @@
                         <viewLayoutGuide key="safeArea" id="Z3J-k3-BCT"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Z3J-k3-BCT" firstAttribute="trailing" secondItem="GNv-YB-aFa" secondAttribute="trailing" id="IZW-K5-BzI"/>
-                            <constraint firstItem="GNv-YB-aFa" firstAttribute="leading" secondItem="Z3J-k3-BCT" secondAttribute="leading" id="WKf-w4-VM3"/>
-                            <constraint firstItem="GNv-YB-aFa" firstAttribute="top" secondItem="2xw-xH-u82" secondAttribute="top" id="pfv-aA-OKg"/>
-                            <constraint firstItem="Z3J-k3-BCT" firstAttribute="bottom" secondItem="GNv-YB-aFa" secondAttribute="bottom" id="rHo-Yh-GIM"/>
+                            <constraint firstItem="GNv-YB-aFa" firstAttribute="trailing" secondItem="Z3J-k3-BCT" secondAttribute="trailing" id="FjV-Ml-bpl"/>
+                            <constraint firstItem="GNv-YB-aFa" firstAttribute="bottom" secondItem="Z3J-k3-BCT" secondAttribute="bottom" id="Hzl-rR-J49"/>
+                            <constraint firstItem="GNv-YB-aFa" firstAttribute="top" secondItem="2xw-xH-u82" secondAttribute="top" id="nie-1X-GfJ"/>
+                            <constraint firstItem="GNv-YB-aFa" firstAttribute="leading" secondItem="Z3J-k3-BCT" secondAttribute="leading" id="yIT-WG-JpD"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="NAU-xK-eAh"/>
@@ -144,7 +145,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pvO-fh-Aeh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2486.9565217391305" y="705.80357142857144"/>
+            <point key="canvasLocation" x="2486.1538461538462" y="705.21327014218002"/>
         </scene>
         <!--Instillinger-->
         <scene sceneID="YbK-zb-4SD">
@@ -199,7 +200,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="k63-1c-cX6">
-                                <rect key="frame" x="95" y="64" width="200" height="200"/>
+                                <rect key="frame" x="95" y="160" width="200" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" priority="750" constant="200" id="gBw-eY-i2E"/>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="200" id="vIP-Sv-aO5"/>
@@ -207,7 +208,7 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="LWs-HK-xBa">
-                                <rect key="frame" x="20" y="284" width="350" height="190.66666666666663"/>
+                                <rect key="frame" x="20" y="380" width="350" height="190.66666666666663"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zDD-Hz-Z8e">
                                         <rect key="frame" x="0.0" y="0.0" width="28.333333333333332" height="13.333333333333334"/>
@@ -252,7 +253,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BostedLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hci-Nb-5Fl">
-                                        <rect key="frame" x="0.0" y="170.33333333333331" width="95" height="20.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="170.33333333333337" width="95" height="20.333333333333343"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -260,13 +261,13 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="36Y-aG-Tcy">
-                                <rect key="frame" x="95" y="708" width="200" height="82"/>
+                                <rect key="frame" x="95" y="659" width="200" height="82"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NHX-7S-N54">
                                         <rect key="frame" x="0.0" y="0.0" width="200" height="31"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="FGe-Ts-o0W"/>
-                                            <constraint firstAttribute="width" constant="200" id="ode-pc-1Fk"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="ode-pc-1Fk"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Rediger"/>
