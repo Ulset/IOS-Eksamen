@@ -14,7 +14,7 @@ struct Person: Decodable {
     let location: Location
     let picture: Picture
     let email: String?
-    let dob: DateOfBirth
+    var dob: DateOfBirth
     let login: Login
     
     init(from pDc: PersonCoreData) {
@@ -27,7 +27,7 @@ struct Person: Decodable {
         self.location = location
         self.name = nameS
         self.email = pDc.email
-        self.dob = DateOfBirth(date: pDc.birthdate, age: Int(pDc.age ?? "0"))
+        self.dob = DateOfBirth(date: pDc.birthdate)
         self.login = Login(uuid: pDc.uuid)
     }
 }
@@ -57,10 +57,19 @@ struct Picture: Decodable {
 }
 
 struct DateOfBirth: Decodable {
-    let date: String?
-    let age: Int?
+    var date: String?
+    var age: Int {
+        get {
+            let birthdayDate = getDateObject()
+            let calendar: NSCalendar! = NSCalendar(calendarIdentifier: .gregorian)
+            let now = Date()
+            let calcAge = calendar.components(.year, from: birthdayDate, to: now, options: [])
+            let age = calcAge.year
+            return age!
+        }
+    }
     
-    func getDateFormatted(format: String) -> String{
+    func getDateObject() -> Date {
         //Couldt get the whole iso string to work so im just using day/monnth/year
         let strIndex = date?.index(date!.startIndex, offsetBy: 10)
         let t = self.date?[..<strIndex!]
@@ -68,12 +77,15 @@ struct DateOfBirth: Decodable {
         
         let dateFormatterGet = DateFormatter()
         dateFormatterGet.dateFormat = "yyyy-MM-dd"
-        
+        return dateFormatterGet.date(from: onlyDayDate)!
+    }
+    
+    func getDateFormatted(format: String) -> String{
         let dateFormatterPrint = DateFormatter()
         dateFormatterPrint.dateFormat = format
         
-        let Newdate = dateFormatterGet.date(from: onlyDayDate)
-        let formatted = dateFormatterPrint.string(from: Newdate!)
+        let Newdate = getDateObject()
+        let formatted = dateFormatterPrint.string(from: Newdate)
         return formatted
     }
     

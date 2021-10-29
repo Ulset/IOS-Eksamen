@@ -17,15 +17,20 @@ class PersonsTableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         personController.addUpdateFunction {
-            self.tableView.reloadData()
-            
-            if !(self.navigationController?.viewControllers.last is PersonsTableViewController) {
-                // If the user has navigated away from the inital screen, force them back.
-                self.navigationController?.popToViewController(self, animated: false)
-            }
+            self.handleTableUpdate()
         }
         tableView.delegate = self
         tableView.dataSource = self
+    }
+    
+    func handleTableUpdate(){
+        // Called every time there is fresh data from the table
+        self.tableView.reloadData()
+        
+        if let userViev = self.navigationController?.viewControllers.last as? PersonViewController{
+            //If currently viewing a specific person, tell that viewcontroller that data has changed.
+            userViev.refreshPersonData()
+        }
     }
 }
 
@@ -34,7 +39,7 @@ extension PersonsTableViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         let vc = storyboard?.instantiateViewController(withIdentifier: "person") as! PersonViewController
         
-        let personObj = personController.getPersons()[indexPath.row]
+        let personObj = personController.getPersonByIndex(index: indexPath.row)
         vc.person = personObj
         
         navigationController?.pushViewController(vc, animated: true)

@@ -40,8 +40,21 @@ class PersonViewController: UIViewController {
         }
     }
     
+    func refreshPersonData(){
+        let uuid = self.person!.login.uuid!
+        if let newPerson = personController.getPersonByUUID(uuid: uuid){
+            // If person currently exists (not deleted) refresh content
+            self.person = newPerson
+            self.viewDidLoad()
+        }else{
+            //Else return to the last vievcontroller in the stack
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
+    
     @IBAction func changeUser(_ sender: UIButton) {
         self.person?.name.first = "TISSEMANN HEHE"
+        self.person?.dob.date = "2005-01-01"
         personController.updatePerson(person: self.person!)
     }
     @IBAction func showOnMapPressed(_ sender: UIButton) {

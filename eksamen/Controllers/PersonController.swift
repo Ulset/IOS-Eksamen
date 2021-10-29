@@ -69,6 +69,13 @@ class PersonController: NSObject, NSFetchedResultsControllerDelegate{
         return localPersons[index]
     }
     
+    func getPersonByUUID(uuid: String) -> Person? {
+        let match =  localPersons.filter({person in
+            return person.login.uuid == uuid
+        })
+        return match.count>0 ? match[0] : nil
+    }
+    
     func addUpdateFunction(updateFunc: @escaping () -> Void) {
         // Adds a function to the updateArray, this function will trigger everytime there is fresh data.
         updateFunctions.append(updateFunc)
@@ -94,7 +101,6 @@ class PersonController: NSObject, NSFetchedResultsControllerDelegate{
         pDc.pictureHighres = person.picture.large
         pDc.email = person.email
         pDc.birthdate = person.dob.date
-        pDc.age = String(person.dob.age ?? 0)
         pDc.city = person.location.city
         pDc.uuid = person.login.uuid
     }
