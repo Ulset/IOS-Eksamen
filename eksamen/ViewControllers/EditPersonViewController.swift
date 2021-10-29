@@ -16,6 +16,7 @@ class EditPersonViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var emailInput: UITextField!
     @IBOutlet weak var cityInput: UITextField!
     @IBOutlet weak var dobInput: UIDatePicker!
+    @IBOutlet weak var teleInput: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,12 +25,14 @@ class EditPersonViewController: UIViewController, UITextFieldDelegate {
         emailInput.text = person?.email
         cityInput.text = person?.location.city
         dobInput.date = person?.dob.getDateObject() ?? Date()
+        teleInput.text = person?.phone
         
         // Close the keyboard when pressing enter
         firstNameInput.delegate = self
         lastNameInput.delegate = self
         emailInput.delegate = self
         cityInput.delegate = self
+        teleInput.delegate = self
         
     }
     @IBAction func pressedSave(_ sender: UIButton) {
@@ -37,9 +40,10 @@ class EditPersonViewController: UIViewController, UITextFieldDelegate {
         self.person?.name.last = lastNameInput.text ?? ""
         self.person?.email = emailInput.text ?? ""
         self.person?.location.city = cityInput.text ?? ""
+        self.person?.phone = teleInput.text ?? ""
+        
         let dateFormatterPrint = DateFormatter()
         dateFormatterPrint.dateFormat = "yyyy-MM-dd"
-        
         let Newdate = dobInput.date
         let formatted = dateFormatterPrint.string(from: Newdate)
         self.person?.dob.date = formatted

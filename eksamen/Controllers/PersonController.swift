@@ -129,11 +129,13 @@ class PersonController: NSObject, NSFetchedResultsControllerDelegate{
         }
     }
     
-    func deleteEverything() {
+    func deleteEverything(onlyNonChanged: Bool = true) {
         //I am become death, the destroyer of Persons
         print("Deleting data....")
         let fetchReq = PersonCoreData.fetchRequest()
-        fetchReq.predicate = NSPredicate(format: "isChanged = %d", false)
+        if(onlyNonChanged){
+            fetchReq.predicate = NSPredicate(format: "isChanged = %d", false)
+        }
         let personDataCoreArr = try! context.fetch(fetchReq)
         for personManaged in personDataCoreArr {
             context.delete(personManaged)
