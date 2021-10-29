@@ -22,20 +22,20 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="personCell" id="Uut-wj-xli" customClass="PersonTableViewCell" customModule="eksamen" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.666666030883789" width="390" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="44.666666030883789" width="390" height="43.333332061767578"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Uut-wj-xli" id="PyQ-be-6zp">
-                                            <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="43.333332061767578"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rKg-F4-v1j">
-                                                    <rect key="frame" x="20" y="11.000000000000002" width="310" height="21.666666666666671"/>
+                                                    <rect key="frame" x="20" y="10.999999999999998" width="310" height="21.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ide-0v-2WY">
-                                                    <rect key="frame" x="330" y="7" width="30" height="30"/>
+                                                    <rect key="frame" x="330" y="6.6666666666666679" width="30" height="30.000000000000004"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="D1r-SL-hBo"/>
                                                         <constraint firstAttribute="width" constant="30" id="y23-aW-D86"/>
@@ -261,7 +261,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="36Y-aG-Tcy">
-                                <rect key="frame" x="95" y="659" width="200" height="82"/>
+                                <rect key="frame" x="95" y="608" width="200" height="133"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NHX-7S-N54">
                                         <rect key="frame" x="0.0" y="0.0" width="200" height="31"/>
@@ -272,7 +272,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Rediger"/>
                                         <connections>
-                                            <action selector="changeUser:" destination="R6R-A2-Dk5" eventType="touchUpInside" id="EDW-kC-RIR"/>
+                                            <action selector="editUserPressed:" destination="R6R-A2-Dk5" eventType="touchUpInside" id="U1P-97-HFE"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OkC-p2-Qxg">
@@ -281,10 +281,25 @@
                                             <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="NgM-7X-fH1"/>
                                             <constraint firstAttribute="width" constant="200" id="YL8-8C-OEh"/>
                                         </constraints>
-                                        <color key="tintColor" systemColor="systemTealColor"/>
-                                        <buttonConfiguration key="configuration" style="filled" image="map" catalog="system" title="Vis på kart"/>
+                                        <buttonConfiguration key="configuration" style="filled" image="map" catalog="system" title="Vis på kart">
+                                            <color key="baseBackgroundColor" systemColor="systemTealColor"/>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="showOnMapPressed:" destination="R6R-A2-Dk5" eventType="touchUpInside" id="mKT-mo-t5B"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Geg-LA-5Ql">
+                                        <rect key="frame" x="0.0" y="102" width="200" height="31"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="1vO-rJ-apj"/>
+                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="L9s-Dv-zAu"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Slett bruker">
+                                            <color key="baseBackgroundColor" systemColor="systemRedColor"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="deleteUserPressed:" destination="R6R-A2-Dk5" eventType="touchUpInside" id="oqq-vd-7Iw"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -310,6 +325,9 @@
                         <outlet property="bostedLabel" destination="Hci-Nb-5Fl" id="zdB-lB-orq"/>
                         <outlet property="emailLabel" destination="YbY-0h-oFJ" id="uzZ-f2-rj0"/>
                         <outlet property="profilePicture" destination="k63-1c-cX6" id="WhV-o6-5Bd"/>
+                        <segue destination="Gzv-Bm-b7g" kind="popoverPresentation" identifier="showEdit" popoverAnchorView="Qhf-4Y-gEd" id="IoD-NT-kW6">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                        </segue>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HWJ-nA-tE8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -335,6 +353,21 @@
             </objects>
             <point key="canvasLocation" x="1576.8115942028987" y="705.80357142857144"/>
         </scene>
+        <!--Edit Person View Controller-->
+        <scene sceneID="uL0-9G-RxG">
+            <objects>
+                <viewController id="Gzv-Bm-b7g" customClass="EditPersonViewController" customModule="eksamen" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Jyk-Qy-c6Q">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="axD-oK-Vfv"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZJZ-Z0-iTn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4211" y="-26"/>
+        </scene>
     </scenes>
     <resources>
         <image name="gear" catalog="system" width="128" height="119"/>
@@ -342,6 +375,9 @@
         <image name="person.2.fill" catalog="system" width="128" height="80"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemTealColor">
             <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

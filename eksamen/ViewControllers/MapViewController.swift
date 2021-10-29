@@ -21,6 +21,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             // Only show a single person, and focus on that person
             mapOutlet.isZoomEnabled = false
             mapOutlet.isScrollEnabled = false
+            mapOutlet.isPitchEnabled = false
+            mapOutlet.isRotateEnabled = false
             let annotation = PersonAnnotation(person: focusOnPerson!)
             mapOutlet.addAnnotation(annotation)
             

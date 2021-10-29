@@ -116,6 +116,17 @@ class PersonController: NSObject, NSFetchedResultsControllerDelegate{
         }
     }
     
+    func deletePerson(person p: Person){
+        let fetchReq = PersonCoreData.fetchRequest()
+        fetchReq.predicate = NSPredicate(format: "uuid = %@", p.login.uuid!)
+        if let fetchedUsers = try? context.fetch(fetchReq) {
+            for user in fetchedUsers {
+                self.context.delete(user)
+            }
+            try! context.save()
+        }
+    }
+    
     func deleteEverything() {
         //I am become death, the destroyer of Persons
         print("Deleting data....")

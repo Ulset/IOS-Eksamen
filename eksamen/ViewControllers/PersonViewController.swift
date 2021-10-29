@@ -51,12 +51,19 @@ class PersonViewController: UIViewController {
             self.navigationController?.popViewController(animated: true)
         }
     }
-    
-    @IBAction func changeUser(_ sender: UIButton) {
-        self.person?.name.first = "TISSEMANN HEHE"
-        self.person?.dob.date = "2005-01-01"
-        personController.updatePerson(person: self.person!)
+    @IBAction func editUserPressed(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "showEdit", sender: self)
     }
+    
+    @IBAction func deleteUserPressed(_ sender: UIButton) {
+        self.personController.deletePerson(person: self.person!)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let vc = segue.destination as! EditPersonViewController
+        vc.person = self.person
+    }
+    
     @IBAction func showOnMapPressed(_ sender: UIButton) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "map") as! MapViewController
         vc.focusOnPerson = person
