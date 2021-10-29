@@ -111,6 +111,7 @@ class PersonController: NSObject, NSFetchedResultsControllerDelegate{
         if let fetchedUsers = try? context.fetch(fetchReq) {
             for user in fetchedUsers {
                 self.applyPersonToPdc(from: p, to: user)
+                user.isChanged = true
             }
             try! context.save()
         }
@@ -130,7 +131,9 @@ class PersonController: NSObject, NSFetchedResultsControllerDelegate{
     func deleteEverything() {
         //I am become death, the destroyer of Persons
         print("Deleting data....")
-        let personDataCoreArr = try! context.fetch(PersonCoreData.fetchRequest())
+        let fetchReq = PersonCoreData.fetchRequest()
+        fetchReq.predicate = NSPredicate(format: "isChanged = %d", false)
+        let personDataCoreArr = try! context.fetch(fetchReq)
         for personManaged in personDataCoreArr {
             context.delete(personManaged)
         }

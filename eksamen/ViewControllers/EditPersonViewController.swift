@@ -7,7 +7,7 @@
 
 import UIKit
 
-class EditPersonViewController: UIViewController {
+class EditPersonViewController: UIViewController, UITextFieldDelegate {
     var person: Person?
     let personController = (UIApplication.shared.delegate as! AppDelegate).personController
     
@@ -24,6 +24,13 @@ class EditPersonViewController: UIViewController {
         emailInput.text = person?.email
         cityInput.text = person?.location.city
         dobInput.date = person?.dob.getDateObject() ?? Date()
+        
+        // Close the keyboard when pressing enter
+        firstNameInput.delegate = self
+        lastNameInput.delegate = self
+        emailInput.delegate = self
+        cityInput.delegate = self
+        
     }
     @IBAction func pressedSave(_ sender: UIButton) {
         self.person?.name.first = firstNameInput.text ?? ""
@@ -39,5 +46,10 @@ class EditPersonViewController: UIViewController {
         
         self.personController.updatePerson(person: self.person!)
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
