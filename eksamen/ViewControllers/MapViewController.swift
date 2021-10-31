@@ -31,9 +31,11 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         } else {
             populateMap()
             personController.addUpdateFunction {
-                if self.navigationController?.topViewController != self {
-                    //Reset map to first screen.
-                    self.navigationController?.popToViewController(self, animated: true)
+                if let pvc = self.navigationController?.topViewController as? PersonViewController {
+                    if let uuid = pvc.person?.login.uuid, self.personController.getPersonByUUID(uuid: uuid) == nil {
+                        //If viewing a person that was deleted, return to main map.
+                        self.navigationController?.popToViewController(self, animated: true)
+                    }
                 }
                 self.populateMap()
             }
