@@ -81,11 +81,17 @@ class PersonController: NSObject, NSFetchedResultsControllerDelegate{
         updateFunctions.append(updateFunc)
     }
     
-    func refreshPersonsFromApi() {
+    func refreshPersonsFromApi(onlyFetchNew: Bool = true) {
+        let deletedPersonsArr = try! context.fetch(DeletedPersons.fetchRequest())
+        let uuidStringArr = deletedPersonsArr.map { dEl in
+            return dEl.uuid
+        }
         api.getPersonsFromApi(finished: {persons in
             for person in persons {
-                let newPerson = PersonCoreData(context: self.context)
-                self.applyPersonToPdc(from: person, to: newPerson)
+                if(!onlyFetchNew || !uuidStringArr.contains(where: {$0 == person.login.uuid})){
+                    let newPerson = PersonCoreData(context: self.context)
+                    self.applyPersonToPdc(from: person, to: newPerson)
+                }
             }
             try! self.context.save()
         })
@@ -111,6 +117,7 @@ class PersonController: NSObject, NSFetchedResultsControllerDelegate{
         fetchReq.predicate = NSPredicate(format: "uuid = %@", p.login.uuid!)
         if let fetchedUsers = try? context.fetch(fetchReq) {
             for user in fetchedUsers {
+                // Burde bare være 1, men kan hende bruker har trykket på "Hent brukere" flere ganger
                 self.applyPersonToPdc(from: p, to: user)
                 user.isChanged = true
             }
@@ -121,12 +128,16 @@ class PersonController: NSObject, NSFetchedResultsControllerDelegate{
     func deletePerson(person p: Person){
         let fetchReq = PersonCoreData.fetchRequest()
         fetchReq.predicate = NSPredicate(format: "uuid = %@", p.login.uuid!)
+        var deletedUsers: [String] = []
         if let fetchedUsers = try? context.fetch(fetchReq) {
             for user in fetchedUsers {
+                // Burde bare være 1, men kan hende bruker har trykket på "Hent brukere" flere ganger
                 self.context.delete(user)
+                deletedUsers.append(user.uuid!)
             }
             try! context.save()
         }
+        logPersonsAsDeleted(uuids: deletedUsers)
     }
     
     func deleteEverything(onlyNonChanged: Bool = true) {
@@ -137,10 +148,22 @@ class PersonController: NSObject, NSFetchedResultsControllerDelegate{
             fetchReq.predicate = NSPredicate(format: "isChanged = %d", false)
         }
         let personDataCoreArr = try! context.fetch(fetchReq)
+        var deletedUuids: [String] = []
         for personManaged in personDataCoreArr {
+            deletedUuids.append(personManaged.uuid!)
             context.delete(personManaged)
         }
         try! context.save()
         print("Deleted")
+        logPersonsAsDeleted(uuids: deletedUuids)
+    }
+    
+    func logPersonsAsDeleted(uuids: [String]) {
+        // Logs the supplied UUIDs as deleted, these will not be added back.
+        for uuid in uuids {
+            let newDeleted = DeletedPersons(context: self.context)
+            newDeleted.uuid = uuid
+        }
+        try! context.save()
     }
 }

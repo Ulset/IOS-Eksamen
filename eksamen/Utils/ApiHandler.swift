@@ -35,12 +35,13 @@ struct ApiHandler {
         task.resume()
     }
     
-    static func getImageFromURL(url: String, finished: @escaping (UIImage) -> Void){
+    static func getImageFromURL(url: String, finished: ((UIImage) -> Void)?){
         DispatchQueue.global().async {
             let url = URL(string: url)
-            let data = try? Data(contentsOf: url!)
-            DispatchQueue.main.async {
-                finished(UIImage(data: data!)!)
+            if let data = try? Data(contentsOf: url!), let image = UIImage(data: data){
+                DispatchQueue.main.async {
+                    finished?(image)
+                }
             }
         }
     }

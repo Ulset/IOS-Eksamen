@@ -38,14 +38,6 @@ extension PersonsTableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         self.performSegue(withIdentifier: "showPersonSegue", sender: self.tableView.cellForRow(at: indexPath))
-        /*
-        let vc = storyboard?.instantiateViewController(withIdentifier: "person") as! PersonViewController
-        
-        let personObj = personController.getPersonByIndex(index: indexPath.row)
-        vc.person = personObj
-        
-        navigationController?.pushViewController(vc, animated: true)
-         */
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
