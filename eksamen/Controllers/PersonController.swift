@@ -88,7 +88,9 @@ class PersonController: NSObject, NSFetchedResultsControllerDelegate{
         }
         api.getPersonsFromApi(finished: {persons in
             for person in persons {
-                if(!onlyFetchNew || !uuidStringArr.contains(where: {$0 == person.login.uuid})){
+                let isNotPrevDeleted = !onlyFetchNew || !uuidStringArr.contains(where: {$0 == person.login.uuid})
+                let alreadyAdded = self.localPersons.contains(where: {addedP in addedP.login.uuid == person.login.uuid})
+                if(isNotPrevDeleted && !alreadyAdded){
                     let newPerson = PersonCoreData(context: self.context)
                     self.applyPersonToPdc(from: person, to: newPerson)
                 }
