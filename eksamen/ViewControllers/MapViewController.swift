@@ -66,6 +66,10 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         if let thumbnailPicture = (annotation as? PersonAnnotation)?.personObj.picture.thumbnail{
             ApiHandler.getImageFromURL(url: thumbnailPicture, finished: {image in
                 annotationView?.image = image
+                annotationView?.layer.cornerRadius = (annotationView?.frame.size.height)!/2
+                annotationView?.layer.masksToBounds = true
+                annotationView?.layer.borderWidth = 3
+                annotationView?.layer.borderColor = UIColor.white.cgColor
             })
         }
         

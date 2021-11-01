@@ -142,7 +142,7 @@ class PersonController: NSObject, NSFetchedResultsControllerDelegate{
         logPersonsAsDeleted(uuids: deletedUsers)
     }
     
-    func deleteEverything(onlyNonChanged: Bool = true) {
+    func deleteEverything(onlyNonChanged: Bool = true, markAsDeleted: Bool = true) {
         //I am become death, the destroyer of Persons
         print("Deleting data....")
         let fetchReq = PersonCoreData.fetchRequest()
@@ -157,7 +157,18 @@ class PersonController: NSObject, NSFetchedResultsControllerDelegate{
         }
         try! context.save()
         print("Deleted")
-        logPersonsAsDeleted(uuids: deletedUuids)
+        if(markAsDeleted){
+            logPersonsAsDeleted(uuids: deletedUuids)
+        }
+    }
+    
+    func resetDeletedList(){
+        // Removes every element from the DeletedPersons CoreData storage, so they will be accepted again.
+        let deletedPersonsArray = try! context.fetch(DeletedPersons.fetchRequest())
+        for dPers in deletedPersonsArray {
+            context.delete(dPers)
+        }
+        try! context.save()
     }
     
     func logPersonsAsDeleted(uuids: [String]) {

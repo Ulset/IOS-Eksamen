@@ -27,7 +27,7 @@ class SettingsViewController: UIViewController {
         let defaults = UserDefaults.standard
         defaults.set(String(seedInput.text!), forKey: "seed")
         
-        personController.deleteEverything()
+        personController.deleteEverything(onlyNonChanged: true, markAsDeleted: false)
         personController.refreshPersonsFromApi()
         let alert = UIAlertController(title: "Alert", message: "Slettet uendrede, lagt til 100 nye (minus de som er markert som tidligere slettet)", preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "Nice!", style: UIAlertAction.Style.default, handler: nil))
@@ -53,6 +53,15 @@ class SettingsViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Bare ikke slettede", style: UIAlertAction.Style.default, handler: {_ in
             self.personController.refreshPersonsFromApi(onlyFetchNew: true)
         }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func refreshDeletedList(_ sender: UIButton) {
+        let alert = UIAlertController(title: "Refreshe slettede personer", message: "Dette vil fjerne 'tidligere slettet' markering på alle som er tidligere slettet, sikker?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ja", style: UIAlertAction.Style.default, handler: {_ in
+            self.personController.resetDeletedList()
+        }))
+        alert.addAction(UIAlertAction(title: "Nei", style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
 }
