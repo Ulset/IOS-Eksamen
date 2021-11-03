@@ -76,9 +76,11 @@ class PersonController: NSObject, NSFetchedResultsControllerDelegate{
         return match.count>0 ? match[0] : nil
     }
     
-    func addUpdateFunction(updateFunc: @escaping () -> Void) {
+    func addUpdateFunction(updateFunc: (() -> Void)?) {
         // Adds a function to the updateArray, this function will trigger everytime there is fresh data.
-        updateFunctions.append(updateFunc)
+        if let updateFunc = updateFunc {
+            updateFunctions.append(updateFunc)
+        }
     }
     
     func refreshPersonsFromApi(onlyFetchNew: Bool = true) {

@@ -29,14 +29,28 @@ class PersonViewController: UIViewController {
         bostedLabel.text = person?.location.city
         telephoneLabel.text = person?.phone
         if(person!.dob.hasBirthdayThisWeek()){
-            //TODO Lage bursdagsgreia
-            print("Har bursdag!")
+            print("har bursdag")
+            self.rainCake()
+        }
+        
+        for view in self.profilePicture.subviews {
+            // If user was edited and now doesnt have birthday, remove subviews (cake) from profilepicture.
+            view.removeFromSuperview()
         }
         
         DispatchQueue.global().async {
             if let pictureUrl = self.person?.picture.large {
                 ApiHandler.getImageFromURL(url: pictureUrl, finished: {image in
                     self.profilePicture.image = image
+                    if(self.person!.dob.hasBirthdayThisWeek()){
+                        let imageHeigth = self.profilePicture.image?.size.height
+                        let labelHeigth = 60.0
+                        let bLabel = UILabel(frame: CGRect.init(x: 0, y: imageHeigth!-labelHeigth, width: self.profilePicture.frame.width, height: labelHeigth))
+                        bLabel.text = "🎂"
+                        bLabel.textAlignment = .right
+                        bLabel.font = bLabel.font.withSize(60)
+                        self.profilePicture.addSubview(bLabel)
+                    }
                 })
             }
         }
@@ -53,6 +67,25 @@ class PersonViewController: UIViewController {
             self.navigationController?.popViewController(animated: true)
         }
     }
+    
+    func rainCake(){
+        let cakesAndStuff = ["🍰", "🧁", "🎂"]
+        for _ in 0...30 {
+            let randomXStartingPos = Double.random(in: 0.0...self.view.frame.width)
+            let randomLength = Double.random(in: 5.0...9.0)
+            let randomSize = Double.random(in: 40...60)
+            let newLabel = UILabel.init(frame: CGRect(x: randomXStartingPos, y: -20, width: randomSize, height: randomSize))
+            newLabel.text = cakesAndStuff[Int.random(in: 1...cakesAndStuff.count-1)]
+            newLabel.font = newLabel.font.withSize(randomSize)
+            self.view.addSubview(newLabel)
+            UIView.animate(withDuration: Double(randomLength), animations: {
+                newLabel.frame.origin.y = self.view.frame.height+20
+            }, completion: {_ in
+                newLabel.removeFromSuperview()
+            })
+        }
+    }
+    
     @IBAction func editUserPressed(_ sender: UIButton) {
         self.performSegue(withIdentifier: "showEdit", sender: self)
     }

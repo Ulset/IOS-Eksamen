@@ -27,17 +27,10 @@ class PersonsTableViewController: UIViewController {
         // Called every time there is fresh data from the table
         self.tableView.reloadData()
         
-        if let userViev = self.navigationController?.viewControllers.last as? PersonViewController{
+        if let userView = self.navigationController?.viewControllers.last as? PersonViewController{
             //If currently viewing a specific person, tell that viewcontroller that data has changed.
-            userViev.refreshPersonData()
+            userView.refreshPersonData()
         }
-    }
-}
-
-extension PersonsTableViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        self.performSegue(withIdentifier: "showPersonSegue", sender: self.tableView.cellForRow(at: indexPath))
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -45,6 +38,13 @@ extension PersonsTableViewController: UITableViewDelegate {
         let cell = sender as! UITableViewCell
         let index = self.tableView.indexPath(for: cell)!
         vc.person = self.personController.getPersonByIndex(index: index.row)
+    }
+}
+
+extension PersonsTableViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        self.performSegue(withIdentifier: "showPersonSegue", sender: self.tableView.cellForRow(at: indexPath))
     }
 }
 
