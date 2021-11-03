@@ -79,6 +79,7 @@ struct DateOfBirth: Decodable {
         
         let dateFormatterGet = DateFormatter()
         dateFormatterGet.dateFormat = "yyyy-MM-dd"
+        dateFormatterGet.locale = Locale(identifier: "en_US_POSIX")
         return dateFormatterGet.date(from: onlyDayDate)!
     }
     
@@ -92,11 +93,21 @@ struct DateOfBirth: Decodable {
     }
     
     func hasBirthdayThisWeek() -> Bool {
+        //because of leap years and such, doing a simple check if the weeknumber of both dates are the same wont work
         let format = "w"
+        
         let todaysDate = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = format
         let todaysDateFormatted = dateFormatter.string(from: todaysDate)
-        return getDateFormatted(format: format) == todaysDateFormatted
+        
+        let birthdayOnlyDayMonth = getDateFormatted(format: "dd-MM")
+        let stupidFormatter = DateFormatter()
+        stupidFormatter.dateFormat = "dd-MM-yyyy"
+        let birthDayIfThisYear = stupidFormatter.date(from: "\(birthdayOnlyDayMonth)-2021")
+        let birthDayIfThisYearFormatted = dateFormatter.string(from: birthDayIfThisYear!)
+        
+
+        return birthDayIfThisYearFormatted == todaysDateFormatted
     }
 }
