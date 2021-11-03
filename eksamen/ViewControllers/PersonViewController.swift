@@ -69,13 +69,13 @@ class PersonViewController: UIViewController {
     }
     
     func rainCake(){
-        let cakesAndStuff = ["🍰", "🧁", "🎂"]
-        for _ in 0...30 {
+        let cakesAndStuff = ["🍰", "🧁", "🎂", "🎊", "🎉", "❤️", "🥰"]
+        for _ in 0...80 {
             let randomXStartingPos = Double.random(in: 0.0...self.view.frame.width)
-            let randomLength = Double.random(in: 5.0...9.0)
-            let randomSize = Double.random(in: 40...60)
+            let randomLength = Double.random(in: 5.0...11.0)
+            let randomSize = Double.random(in: 10...60)
             let newLabel = UILabel.init(frame: CGRect(x: randomXStartingPos, y: -20, width: randomSize, height: randomSize))
-            newLabel.text = cakesAndStuff[Int.random(in: 1...cakesAndStuff.count-1)]
+            newLabel.text = cakesAndStuff[Int.random(in: 0...cakesAndStuff.count-1)]
             newLabel.font = newLabel.font.withSize(randomSize)
             self.view.addSubview(newLabel)
             UIView.animate(withDuration: Double(randomLength), animations: {

@@ -17,6 +17,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        mapOutlet.delegate = self
         if focusOnPerson != nil {
             // Only show a single person, and focus on that person
             mapOutlet.isZoomEnabled = false
@@ -43,7 +44,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 self.populateMap()
             }
         }
-        mapOutlet.delegate = self
     }
     
     func populateMap(){
