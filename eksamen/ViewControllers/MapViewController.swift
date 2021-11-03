@@ -35,6 +35,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                     if let uuid = pvc.person?.login.uuid, self.personController.getPersonByUUID(uuid: uuid) == nil {
                         //If viewing a person that was deleted, return to main map.
                         self.navigationController?.popToViewController(self, animated: true)
+                    }else {
+                        //If person still exist, ask the viewcontroller to refresh its data
+                        pvc.refreshPersonData()
                     }
                 }
                 self.populateMap()
