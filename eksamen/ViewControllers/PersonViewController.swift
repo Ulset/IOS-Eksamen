@@ -38,21 +38,19 @@ class PersonViewController: UIViewController {
             view.removeFromSuperview()
         }
         
-        DispatchQueue.global().async {
-            if let pictureUrl = self.person?.picture.large {
-                ApiHandler.getImageFromURL(url: pictureUrl, finished: {image in
-                    self.profilePicture.image = image
-                    if(self.person!.dob.hasBirthdayThisWeek()){
-                        let imageHeigth = self.profilePicture.image?.size.height
-                        let labelHeigth = 60.0
-                        let bLabel = UILabel(frame: CGRect.init(x: 0, y: imageHeigth!-labelHeigth, width: self.profilePicture.frame.width, height: labelHeigth))
-                        bLabel.text = "🎂"
-                        bLabel.textAlignment = .right
-                        bLabel.font = bLabel.font.withSize(60)
-                        self.profilePicture.addSubview(bLabel)
-                    }
-                })
-            }
+        if let pictureUrl = self.person?.picture.large {
+            ApiHandler.getImageFromURL(url: pictureUrl, finished: {image in
+                self.profilePicture.image = image
+                if(self.person!.dob.hasBirthdayThisWeek()){
+                    let imageHeigth = self.profilePicture.image?.size.height
+                    let labelHeigth = 60.0
+                    let bLabel = UILabel(frame: CGRect.init(x: 0, y: imageHeigth!-labelHeigth, width: self.profilePicture.frame.width, height: labelHeigth))
+                    bLabel.text = "🎂"
+                    bLabel.textAlignment = .right
+                    bLabel.font = bLabel.font.withSize(60)
+                    self.profilePicture.addSubview(bLabel)
+                }
+            })
         }
     }
     
