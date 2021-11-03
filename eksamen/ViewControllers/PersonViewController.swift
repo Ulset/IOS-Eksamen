@@ -45,7 +45,7 @@ class PersonViewController: UIViewController {
                     let imageHeigth = self.profilePicture.image?.size.height
                     let labelHeigth = 60.0
                     let bLabel = UILabel(frame: CGRect.init(x: 0, y: imageHeigth!-labelHeigth, width: self.profilePicture.frame.width, height: labelHeigth))
-                    bLabel.text = "🎂"
+                    bLabel.text = "🎉"
                     bLabel.textAlignment = .right
                     bLabel.font = bLabel.font.withSize(60)
                     self.profilePicture.addSubview(bLabel)
@@ -61,7 +61,7 @@ class PersonViewController: UIViewController {
             self.person = newPerson
             self.viewDidLoad()
         }else{
-            //Else return to the last vievcontroller in the stack
+            //If user cant be found, return to the last ViewController in NavController stack
             self.navigationController?.popViewController(animated: true)
         }
     }
