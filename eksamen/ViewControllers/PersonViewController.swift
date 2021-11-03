@@ -18,6 +18,8 @@ class PersonViewController: UIViewController {
     
     let personController = (UIApplication.shared.delegate as! AppDelegate).personController
     
+    var timer: Timer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let firstname = person?.name.first
@@ -55,6 +57,7 @@ class PersonViewController: UIViewController {
     }
     
     func refreshPersonData(){
+        self.timer?.invalidate()
         let uuid = self.person!.login.uuid!
         if let newPerson = personController.getPersonByUUID(uuid: uuid){
             // If person currently exists (not deleted) refresh content
@@ -67,12 +70,12 @@ class PersonViewController: UIViewController {
     }
     
     func rainCake(){
-        let cakesAndStuff = ["🍰", "🧁", "🎂", "🎊", "🎉", "❤️", "🥰"]
-        for _ in 0...80 {
+        self.timer = Timer.scheduledTimer(withTimeInterval: 0.4, repeats: true) { timer in
+            let cakesAndStuff = ["🍰", "🧁", "🎂", "🎊", "🎉", "❤️", "🥰"]
             let randomXStartingPos = Double.random(in: 0.0...self.view.frame.width)
-            let randomLength = Double.random(in: 5.0...11.0)
-            let randomSize = Double.random(in: 10...60)
-            let newLabel = UILabel.init(frame: CGRect(x: randomXStartingPos, y: -20, width: randomSize, height: randomSize))
+            let randomLength = Double.random(in: 2.0...11.0)
+            let randomSize = Double.random(in: 30...60)
+            let newLabel = UILabel.init(frame: CGRect(x: randomXStartingPos, y: -60, width: randomSize, height: randomSize))
             newLabel.text = cakesAndStuff[Int.random(in: 0...cakesAndStuff.count-1)]
             newLabel.font = newLabel.font.withSize(randomSize)
             self.view.addSubview(newLabel)
@@ -86,6 +89,10 @@ class PersonViewController: UIViewController {
     
     @IBAction func editUserPressed(_ sender: UIButton) {
         self.performSegue(withIdentifier: "showEdit", sender: self)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.timer?.invalidate()
     }
     
     @IBAction func deleteUserPressed(_ sender: UIButton) {
