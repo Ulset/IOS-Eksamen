@@ -17,6 +17,7 @@
 		465896EB2727456500DC44BD /* PersonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465896EA2727456500DC44BD /* PersonController.swift */; };
 		465896EE2727501900DC44BD /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465896ED2727501900DC44BD /* Person.swift */; };
 		465896F02727515900DC44BD /* PersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465896EF2727515900DC44BD /* PersonViewController.swift */; };
+		46B4E81F27395A5E005B942A /* KeyboardDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B4E81E27395A5E005B942A /* KeyboardDelegate.swift */; };
 		46CB0ECC272949DC004EE824 /* ApiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CB0ECB272949DC004EE824 /* ApiHandler.swift */; };
 		46CB0EF227295720004EE824 /* Persons.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 46CB0EF027295720004EE824 /* Persons.xcdatamodeld */; };
 		46CB0EFA27297069004EE824 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CB0EF927297069004EE824 /* SettingsViewController.swift */; };
@@ -37,6 +38,7 @@
 		465896EA2727456500DC44BD /* PersonController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonController.swift; sourceTree = "<group>"; };
 		465896ED2727501900DC44BD /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		465896EF2727515900DC44BD /* PersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewController.swift; sourceTree = "<group>"; };
+		46B4E81E27395A5E005B942A /* KeyboardDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDelegate.swift; sourceTree = "<group>"; };
 		46CB0ECB272949DC004EE824 /* ApiHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiHandler.swift; sourceTree = "<group>"; };
 		46CB0EF127295720004EE824 /* Persons.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Persons.xcdatamodel; sourceTree = "<group>"; };
 		46CB0EF927297069004EE824 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				465896E82727451900DC44BD /* ViewControllers */,
 				465896D22727067800DC44BD /* AppDelegate.swift */,
 				465896D42727067800DC44BD /* SceneDelegate.swift */,
+				46B4E81E27395A5E005B942A /* KeyboardDelegate.swift */,
 				465896D82727067800DC44BD /* Main.storyboard */,
 				465896DB2727067900DC44BD /* Assets.xcassets */,
 				465896DD2727067900DC44BD /* LaunchScreen.storyboard */,
@@ -206,6 +209,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				461CF09827298E2E00FBB8B4 /* MapViewController.swift in Sources */,
+				46B4E81F27395A5E005B942A /* KeyboardDelegate.swift in Sources */,
 				465896EE2727501900DC44BD /* Person.swift in Sources */,
 				465896D32727067800DC44BD /* AppDelegate.swift in Sources */,
 				46CB0EFA27297069004EE824 /* SettingsViewController.swift in Sources */,

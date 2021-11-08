@@ -51,7 +51,7 @@ class PersonController: NSObject, NSFetchedResultsControllerDelegate{
         }
     }
     
-    func refreshFromCoreData(){
+    private func refreshFromCoreData(){
         // Gets the data from CoreData and transforms in to Person structs.
         let fetchReq = PersonCoreData.fetchRequest()
         fetchReq.sortDescriptors = [NSSortDescriptor(key: "uuid", ascending: true)]
@@ -173,7 +173,7 @@ class PersonController: NSObject, NSFetchedResultsControllerDelegate{
         try! context.save()
     }
     
-    func logPersonsAsDeleted(uuids: [String]) {
+    private func logPersonsAsDeleted(uuids: [String]) {
         // Logs the supplied UUIDs as deleted, these will not be added back.
         for uuid in uuids {
             let newDeleted = DeletedPersons(context: self.context)

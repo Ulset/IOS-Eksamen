@@ -10,10 +10,12 @@ import CoreData
 
 class SettingsViewController: UIViewController {
     let personController = (UIApplication.shared.delegate as! AppDelegate).personController
+    let keyboardDelegate = KeyboardDelegate()
     @IBOutlet weak var seedInput: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        seedInput.delegate = self.keyboardDelegate
         let defaults = UserDefaults.standard
         if let storedSeed = defaults.string(forKey: "seed"){
             seedInput.text = storedSeed
@@ -25,7 +27,7 @@ class SettingsViewController: UIViewController {
     
     @IBAction func setSeed(_ sender: UIButton) {
         let defaults = UserDefaults.standard
-        defaults.set(String(seedInput.text!), forKey: "seed")
+        defaults.set(String(seedInput.text!.replacingOccurrences(of: " ", with: "_")), forKey: "seed")
         
         personController.deleteEverything(onlyNonChanged: true, markAsDeleted: false)
         personController.refreshPersonsFromApi()

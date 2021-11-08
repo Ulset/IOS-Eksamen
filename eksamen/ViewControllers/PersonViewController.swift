@@ -70,7 +70,7 @@ class PersonViewController: UIViewController {
     }
     
     func rainCake(){
-        self.timer = Timer.scheduledTimer(withTimeInterval: 0.4, repeats: true) { timer in
+        self.timer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { timer in
             let cakesAndStuff = ["🍰", "🧁", "🎂", "🎊", "🎉", "❤️", "🥰"]
             let randomXStartingPos = Double.random(in: 0.0...self.view.frame.width)
             let randomLength = Double.random(in: 2.0...11.0)
@@ -91,7 +91,7 @@ class PersonViewController: UIViewController {
         self.performSegue(withIdentifier: "showEdit", sender: self)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         self.timer?.invalidate()
     }
     
