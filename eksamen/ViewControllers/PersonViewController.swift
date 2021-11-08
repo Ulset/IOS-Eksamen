@@ -79,7 +79,7 @@ class PersonViewController: UIViewController {
             newLabel.text = cakesAndStuff[Int.random(in: 0...cakesAndStuff.count-1)]
             newLabel.font = newLabel.font.withSize(randomSize)
             self.view.addSubview(newLabel)
-            UIView.animate(withDuration: Double(randomLength), animations: {
+            UIView.animate(withDuration: randomLength, animations: {
                 newLabel.frame.origin.y = self.view.frame.height+20
             }, completion: {_ in
                 newLabel.removeFromSuperview()
