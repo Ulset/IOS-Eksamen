@@ -62,13 +62,21 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
         if annotationView == nil {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView?.frame.size = CGSize(width: 30, height: 40)
         } else {
             annotationView?.annotation = annotation
         }
         
         if let thumbnailPicture = (annotation as? PersonAnnotation)?.personObj.picture.thumbnail{
             ApiHandler.getImageFromURL(url: thumbnailPicture, finished: {image in
-                annotationView?.image = image
+                // Resize image
+                let pinImage = image
+                let size = CGSize(width: 50, height: 50)
+                UIGraphicsBeginImageContext(size)
+                pinImage.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+                let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+                
+                annotationView?.image = resizedImage
                 annotationView?.layer.cornerRadius = (annotationView?.frame.size.height)!/2
                 annotationView?.layer.masksToBounds = true
                 annotationView?.layer.borderWidth = 3

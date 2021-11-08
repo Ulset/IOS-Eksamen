@@ -42,6 +42,10 @@ struct ApiHandler {
                 DispatchQueue.main.async {
                     finished?(image)
                 }
+            }else {
+                DispatchQueue.main.async {
+                    finished?(UIImage(named: "profilePicture")!)
+                }
             }
         }
     }
