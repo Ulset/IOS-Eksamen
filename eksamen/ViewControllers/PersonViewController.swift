@@ -74,13 +74,14 @@ class PersonViewController: UIViewController {
             let cakesAndStuff = ["🍰", "🧁", "🎂", "🎊", "🎉", "❤️", "🥰"]
             let randomXStartingPos = Double.random(in: 0.0...self.view.frame.width)
             let randomLength = Double.random(in: 2.0...11.0)
-            let randomSize = Double.random(in: 30...60)
+            let randomSize = Double.random(in: 40...80)
             let newLabel = UILabel.init(frame: CGRect(x: randomXStartingPos, y: -60, width: randomSize, height: randomSize))
             newLabel.text = cakesAndStuff[Int.random(in: 0...cakesAndStuff.count-1)]
             newLabel.font = newLabel.font.withSize(randomSize)
             self.view.addSubview(newLabel)
             UIView.animate(withDuration: randomLength, animations: {
                 newLabel.frame.origin.y = self.view.frame.height+20
+                newLabel.transform = newLabel.transform.scaledBy(x: 0.3, y: 0.3)
             }, completion: {_ in
                 newLabel.removeFromSuperview()
             })
