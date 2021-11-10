@@ -7,14 +7,14 @@
 
 import Foundation
 import UIKit
+import CoreData
 
-struct ApiHandler {
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    struct PersonApiRespose: Decodable {
-        //This is just for the API call, since it returns a list
-        let results: [Person]
-    }
-    
+struct PersonApiRespose: Decodable {
+    //This is just for the API call, since it returns a list
+    let results: [Person]
+}
+
+struct ApiHandler { 
     func getPersonsFromApi(finished: (([Person])->Void)?){
         let defaults = UserDefaults.standard
         let seed = defaults.string(forKey: "seed") ?? "ios"
@@ -35,17 +35,41 @@ struct ApiHandler {
         task.resume()
     }
     
-    static func getImageFromURL(url: String, finished: ((UIImage) -> Void)?){
+    static private func getImageFromCache(url: String, context: NSManagedObjectContext) -> UIImage?{
+        let fetchReq = PictureCache.fetchRequest()
+        fetchReq.predicate = NSPredicate(format: "url = %@", url)
+        let cachedImage = try! context.fetch(fetchReq)
+        return cachedImage.count>0 ? UIImage(data: cachedImage[0].pictureData!) : nil
+    }
+    
+    static private func setImageCache(url: String, data: Data, context: NSManagedObjectContext) {
         DispatchQueue.global().async {
-            let url = URL(string: url)
-            if let data = try? Data(contentsOf: url!), let image = UIImage(data: data){
-                DispatchQueue.main.async {
-                    finished?(image)
-                }
-            }else {
-                DispatchQueue.main.async {
-                    finished?(UIImage(named: "profilePicture")!)
-                }
+            let newCache = PictureCache(context: context)
+            newCache.url = url
+            newCache.pictureData = data
+            try! context.save()
+        }
+    }
+    
+    static func getImageFromURL(url: String, finished: ((UIImage) -> Void)?){
+        // Checks if the image is already in cache, if not tries to download it.
+        // If user has no internet, gives back standard image.
+        
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        DispatchQueue.global().async {
+            let url_format = URL(string: url)
+            let image: UIImage
+            if let cachedImage = self.getImageFromCache(url: url, context: context) {
+                image = cachedImage
+            }else if let data = try? Data(contentsOf: url_format!), let imageFromApi = UIImage(data: data){
+                image = imageFromApi
+                self.setImageCache(url: url, data: data, context: context)
+            } else {
+                image = UIImage(named: "profilePicture")!
+            }
+            
+            DispatchQueue.main.async {
+                finished?(image)
             }
         }
     }

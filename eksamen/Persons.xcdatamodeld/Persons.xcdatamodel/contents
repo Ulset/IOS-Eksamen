@@ -18,8 +18,13 @@
         <attribute name="pictureThumbnail" optional="YES" attributeType="String"/>
         <attribute name="uuid" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="PictureCache" representedClassName="PictureCache" syncable="YES" codeGenerationType="class">
+        <attribute name="pictureData" optional="YES" attributeType="Binary"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
+    </entity>
     <elements>
-        <element name="PersonCoreData" positionX="-63" positionY="-18" width="128" height="224"/>
         <element name="DeletedPersons" positionX="-63" positionY="81" width="128" height="44"/>
+        <element name="PersonCoreData" positionX="-63" positionY="-18" width="128" height="224"/>
+        <element name="PictureCache" positionX="-63" positionY="81" width="128" height="59"/>
     </elements>
 </model>
