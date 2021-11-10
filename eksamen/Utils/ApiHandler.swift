@@ -47,13 +47,15 @@ struct ApiHandler {
             let newCache = PictureCache(context: context)
             newCache.url = url
             newCache.pictureData = data
-            try? context.save()
+            context.perform {
+                // Ensure context saves in the correct thread
+                try? context.save()
+            }
         }
     }
     
     static func getImageFromURL(url: String, finished: ((UIImage) -> Void)?){
         // Checks if the image is already in cache, if not tries to download it.
-        // If user has no internet, gives back standard image.
         
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         DispatchQueue.global().async {
@@ -65,6 +67,8 @@ struct ApiHandler {
                 image = imageFromApi
                 self.setImageCache(url: url, data: data, context: context)
             } else {
+                // If miss on cache and cant download for any reason give back a standard image.
+                // This proboably shouldt be handled here, but im just fetching profilepictures in this app anyway.
                 image = UIImage(named: "profilePicture")!
             }
             
