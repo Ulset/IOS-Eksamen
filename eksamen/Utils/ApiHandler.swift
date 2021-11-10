@@ -47,7 +47,7 @@ struct ApiHandler {
             let newCache = PictureCache(context: context)
             newCache.url = url
             newCache.pictureData = data
-            try! context.save()
+            try? context.save()
         }
     }
     
