@@ -17,6 +17,7 @@
 		465896EB2727456500DC44BD /* PersonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465896EA2727456500DC44BD /* PersonController.swift */; };
 		465896EE2727501900DC44BD /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465896ED2727501900DC44BD /* Person.swift */; };
 		465896F02727515900DC44BD /* PersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465896EF2727515900DC44BD /* PersonViewController.swift */; };
+		4668E3FD273C36BF004FF8AB /* eksamenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4668E3FC273C36BF004FF8AB /* eksamenTests.swift */; };
 		46B4E81F27395A5E005B942A /* KeyboardDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B4E81E27395A5E005B942A /* KeyboardDelegate.swift */; };
 		46CB0ECC272949DC004EE824 /* ApiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CB0ECB272949DC004EE824 /* ApiHandler.swift */; };
 		46CB0EF227295720004EE824 /* Persons.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 46CB0EF027295720004EE824 /* Persons.xcdatamodeld */; };
@@ -24,6 +25,16 @@
 		46F54652272C41A400B37753 /* EditPersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F54651272C41A400B37753 /* EditPersonViewController.swift */; };
 		46FCF3022729B3A700B0274B /* PersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FCF3012729B3A700B0274B /* PersonTableViewCell.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4668E3FE273C36BF004FF8AB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 465896C72727067800DC44BD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 465896CE2727067800DC44BD;
+			remoteInfo = eksamen;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		461CF09727298E2E00FBB8B4 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -38,6 +49,8 @@
 		465896EA2727456500DC44BD /* PersonController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonController.swift; sourceTree = "<group>"; };
 		465896ED2727501900DC44BD /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		465896EF2727515900DC44BD /* PersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewController.swift; sourceTree = "<group>"; };
+		4668E3FA273C36BF004FF8AB /* eksamenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = eksamenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4668E3FC273C36BF004FF8AB /* eksamenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = eksamenTests.swift; sourceTree = "<group>"; };
 		46B4E81E27395A5E005B942A /* KeyboardDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDelegate.swift; sourceTree = "<group>"; };
 		46CB0ECB272949DC004EE824 /* ApiHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiHandler.swift; sourceTree = "<group>"; };
 		46CB0EF127295720004EE824 /* Persons.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Persons.xcdatamodel; sourceTree = "<group>"; };
@@ -54,6 +67,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4668E3F7273C36BF004FF8AB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -61,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				465896D12727067800DC44BD /* eksamen */,
+				4668E3FB273C36BF004FF8AB /* eksamenTests */,
 				465896D02727067800DC44BD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -69,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				465896CF2727067800DC44BD /* eksamen.app */,
+				4668E3FA273C36BF004FF8AB /* eksamenTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -121,6 +143,14 @@
 			path = DataTypes;
 			sourceTree = "<group>";
 		};
+		4668E3FB273C36BF004FF8AB /* eksamenTests */ = {
+			isa = PBXGroup;
+			children = (
+				4668E3FC273C36BF004FF8AB /* eksamenTests.swift */,
+			);
+			path = eksamenTests;
+			sourceTree = "<group>";
+		};
 		46CB0ECA272949C5004EE824 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +187,24 @@
 			productReference = 465896CF2727067800DC44BD /* eksamen.app */;
 			productType = "com.apple.product-type.application";
 		};
+		4668E3F9273C36BF004FF8AB /* eksamenTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4668E400273C36BF004FF8AB /* Build configuration list for PBXNativeTarget "eksamenTests" */;
+			buildPhases = (
+				4668E3F6273C36BF004FF8AB /* Sources */,
+				4668E3F7273C36BF004FF8AB /* Frameworks */,
+				4668E3F8273C36BF004FF8AB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4668E3FF273C36BF004FF8AB /* PBXTargetDependency */,
+			);
+			name = eksamenTests;
+			productName = eksamenTests;
+			productReference = 4668E3FA273C36BF004FF8AB /* eksamenTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -164,11 +212,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1300;
+				LastSwiftUpdateCheck = 1310;
 				LastUpgradeCheck = 1300;
 				TargetAttributes = {
 					465896CE2727067800DC44BD = {
 						CreatedOnToolsVersion = 13.0;
+					};
+					4668E3F9273C36BF004FF8AB = {
+						CreatedOnToolsVersion = 13.1;
+						TestTargetID = 465896CE2727067800DC44BD;
 					};
 				};
 			};
@@ -186,6 +238,7 @@
 			projectRoot = "";
 			targets = (
 				465896CE2727067800DC44BD /* eksamen */,
+				4668E3F9273C36BF004FF8AB /* eksamenTests */,
 			);
 		};
 /* End PBXProject section */
@@ -198,6 +251,13 @@
 				465896DF2727067900DC44BD /* LaunchScreen.storyboard in Resources */,
 				465896DC2727067900DC44BD /* Assets.xcassets in Resources */,
 				465896DA2727067800DC44BD /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4668E3F8273C36BF004FF8AB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,7 +284,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4668E3F6273C36BF004FF8AB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4668E3FD273C36BF004FF8AB /* eksamenTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4668E3FF273C36BF004FF8AB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 465896CE2727067800DC44BD /* eksamen */;
+			targetProxy = 4668E3FE273C36BF004FF8AB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		465896D82727067800DC44BD /* Main.storyboard */ = {
@@ -420,6 +496,52 @@
 			};
 			name = Release;
 		};
+		4668E401273C36BF004FF8AB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8ZGRMZVHV2;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = sander.ulset.eksamenTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/eksamen.app/eksamen";
+			};
+			name = Debug;
+		};
+		4668E402273C36BF004FF8AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8ZGRMZVHV2;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = sander.ulset.eksamenTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/eksamen.app/eksamen";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -437,6 +559,15 @@
 			buildConfigurations = (
 				465896E42727067900DC44BD /* Debug */,
 				465896E52727067900DC44BD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4668E400273C36BF004FF8AB /* Build configuration list for PBXNativeTarget "eksamenTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4668E401273C36BF004FF8AB /* Debug */,
+				4668E402273C36BF004FF8AB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
