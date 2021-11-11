@@ -5,6 +5,10 @@
 * IOS target: `IOS 14.7`
 * Simulator: `IOS 15`
 
+## Dependencies
+* https://github.com/hackiftekhar/IQKeyboardManager
+  * For at keyboardet ikke skal gå over input feltene
+
 ## Ting jeg syntes ble bra
 * Jeg liker egentlig veldig godt måten jeg håndterte oppdateringer av data (Array av closures)
 * Appen tilpasser seg forskjellige mobilstørrelser
