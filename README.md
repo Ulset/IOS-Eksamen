@@ -1,5 +1,5 @@
 ### Eksamen Sander Ulset
-### Grade: `A`
+### Karakter: `A`
 
 ## Setup
 * Xcode versjon: `13.1 (13A1030d)`
